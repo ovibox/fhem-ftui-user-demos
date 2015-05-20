@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="108">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />	
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_main.html"></li>
+
+
+<!-- ============= Wetterbutton ============ -->
+<!-- ======================================= -->
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Kameras =============== -->
+<!-- ====================================== -->
+
+
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="1">
+    <header>Kameras</header>
+    <table border="0px" width="100%">
+	<td>
+	    <div data-type="symbol" 
+			data-device="WZ_STA"
+			data-icon="fa-video-camera"
+			class="cell"></div>
+        </div>
+		<div data-type="label" class="darker small">Kamera 1</div>
+	</td>
+	
+		<td>
+	    <div data-type="symbol" 
+			data-device="WZ_STA"
+			data-icon="fa-video-camera"
+			class="cell"></div>
+        </div>
+		<div data-type="label" class="darker small">Kamera 2</div>
+	</td>
+	
+		<td>
+	    <div data-type="symbol" 
+			data-device="WZ_STA"
+			data-icon="fa-video-camera"
+			class="cell"></div>
+        </div>
+		<div data-type="label" class="darker small">Kamera 3</div>
+	</td>
+	
+		<td>
+	    <div data-type="symbol" 
+			data-device="WZ_STA"
+			data-icon="fa-video-camera"
+			class="cell"></div>
+        </div>
+		<div data-type="label" class="darker small">Kamera 4</div>
+	</td>
+
+</table>
+</li>
+
+
+<!-- ============== Fenster ================ -->
+<!-- ======================================= -->
+<li data-row="3" data-col="2" data-sizex="3" data-sizey="2" data-template="inc_fenster.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+<li data-row="3" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Enable</header>
+	<div data-type="switch" class="cell" 
+            data-device="ANLAGE_SEC_TABLET_SWITCH_ENABLE"
+			data-icon="oa-secur_open"
+            data-get-on="on"
+            data-get-off="off">
+	</div>
+</li>
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

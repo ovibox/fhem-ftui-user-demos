@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="108">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_main.html"></li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<!-- ============= Anrufliste ============= -->
+<!-- ====================================== -->
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="4">
+    <header>Anrufliste</header>
+    <table border="0px" width="100%">
+        <tr>
+            <td><div type="label" device="Fritz_Box" data-get="B0"></div></td>
+            <td>
+                <div type="label" device="Fritz_Box" data-get="D0" style="font-size:x-large;color:#aa6900;"></div>
+                <div type="label" device="Fritz_Box" data-get="C0"></div>
+            </td>
+            <td class="r"><div type="label" device="Fritz_Box" data-get="E0"></div></td>
+            <td class="r"><div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A0"
+                        data-icons='["fa-phone","fa-phone","fa-phone","fa-phone"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'></div>
+                    </div>
+                    <div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A0"
+                        data-icons='["fa-arrow-circle-left","fa-arrow-circle-right","fa-arrow-circle-left","fa-arrow-circle-right"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'
+                        class="inline"></div></td>
+        </tr>
+
+        <tr>
+            <td><div type="label" device="Fritz_Box" data-get="B1"></div></td>
+            <td>
+                <div type="label" device="Fritz_Box" data-get="D1" style="font-size:x-large;color:#aa6900;"></div>
+                <div type="label" device="Fritz_Box" data-get="C1"></div>
+            </td>
+            <td class="r"><div type="label" device="Fritz_Box" data-get="E1"></div></td>
+            <td class="r"><div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A1"
+                        data-icons='["fa-phone","fa-phone","fa-phone","fa-phone"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'></div>
+                    </div>
+                    <div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A1"
+                        data-icons='["fa-arrow-circle-left","fa-arrow-circle-right","fa-arrow-circle-left","fa-arrow-circle-right"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'
+                        class="inline"></div></td>
+        </tr>
+        <tr>
+            <td><div type="label" device="Fritz_Box" data-get="B2"></div></td>
+            <td>
+                <div type="label" device="Fritz_Box" data-get="D2" style="font-size:x-large;color:#aa6900;"></div>
+                <div type="label" device="Fritz_Box" data-get="C2"></div>
+            </td>
+            <td class="r"><div type="label" device="Fritz_Box" data-get="E2"></div></td>
+            <td class="r"><div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A2"
+                        data-icons='["fa-phone","fa-phone","fa-phone","fa-phone"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'></div>
+                    </div>
+                    <div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A2"
+                        data-icons='["fa-arrow-circle-left","fa-arrow-circle-right","fa-arrow-circle-left","fa-arrow-circle-right"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'
+                        class="inline"></div></td>
+        </tr>
+        <tr>
+            <td><div type="label" device="Fritz_Box" data-get="B3"></div></td>
+            <td>
+                <div type="label" device="Fritz_Box" data-get="D3" style="font-size:x-large;color:#aa6900;"></div>
+                <div type="label" device="Fritz_Box" data-get="C3"></div>
+            </td>
+            <td class="r"><div type="label" device="Fritz_Box" data-get="E3"></div></td>
+            <td class="r"><div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A3"
+                        data-icons='["fa-phone","fa-phone","fa-phone","fa-phone"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'></div>
+                    </div>
+                    <div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A3"
+                        data-icons='["fa-arrow-circle-left","fa-arrow-circle-right","fa-arrow-circle-left","fa-arrow-circle-right"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'
+                        class="inline"></div></td>
+        </tr>
+        <tr>
+            <td><div type="label" device="Fritz_Box" data-get="B4"></div></td>
+            <td>
+                <div type="label" device="Fritz_Box" data-get="D4" style="font-size:x-large;color:#aa6900;"></div>
+                <div type="label" device="Fritz_Box" data-get="C4"></div>
+            </td>
+            <td class="r"><div type="label" device="Fritz_Box" data-get="E4"></div></td>
+            <td class="r"><div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A4"
+                        data-icons='["fa-phone","fa-phone","fa-phone","fa-phone"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'></div>
+                    </div>
+                    <div data-type="symbol" data-device="Fritz_Box"
+                        data-get="A4"
+                        data-icons='["fa-arrow-circle-left","fa-arrow-circle-right","fa-arrow-circle-left","fa-arrow-circle-right"]'
+                        data-get-on='["in_connected","out_connected","in_notconnected","out_notconnected"]'
+                        data-on-colors='["green","green","red","red"]'
+                        class="inline"></div></td>
+        </tr>
+
+</table>
+</li>
+
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>
