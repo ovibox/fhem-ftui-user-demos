@@ -7,7 +7,10 @@
 
 <ul>
 <p>Beispiel:</p>
-<p>mehr hier: <a href="https://github.com/ovibox/fhem-ftui-user-demos/tree/master/Phil__">https://github.com/ovibox/fhem-ftui-user-demos/tree/master/Phil__</a></p>
 </ul>
 
 <p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/Phil__/screenshots/index.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/Phil__/screenshots/index.JPG" style="max-width:100%;"></p>
+
+<ul>
+<p>mehr hier: <a href="https://github.com/ovibox/fhem-ftui-user-demos/tree/master/Phil__">https://github.com/ovibox/fhem-ftui-user-demos/tree/master/Phil__</a></p>
+</ul>
