@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="108">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_wetter_right.html"></li>
+</li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+<li data-row="1" data-col="5" data-sizex="1" data-sizey="1" data-template="inc_dwdbutton.html"></li>
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_unwetterbutton.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<!-- =============Wettervorhersage  =============== -->
+<!-- ====================================== -->
+
+<li data-row="2" data-col="2" data-sizex="3" data-sizey="2">
+<div class="container weather">
+<header>Wetter in <div data-type="label" 
+						data-device="Wetter_LGN" 
+						data-get="city"
+						style="display:inline"></div></header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="condition"
+						style="font-size:250%"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="condition"></div>
+			</td>
+			<td>Temp:</td>
+			<td>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="temperature"
+					data-limits="[-50,0,10,25,30,40]"
+					data-colors='["#9999ff","#ffbdff","#aa6900","#ff6900","#ff3333","#ff0000"]'
+					data-unit=" °C"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Feucht:</td>
+			<td>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="humidity"
+					data-limits="[0,40,60]"
+					data-colors='["#9999ff","#aa6900","#ff6900"]'
+					data-unit=" %"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Wind:</td>
+			<td>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="wind"
+					data-unit="km/h"
+					data-limits="[0, 19, 28, 38, 49, 74, 102, 117]"
+					data-colors='["#ffffff","#dddddd","#aa6900","#aa6900","#ff9999","#ff6666","#ff3333","#ff0000"]'
+					style="display:inline"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Druck:</td>
+			<td>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="pressure"
+					data-unit=" hPa"
+					data-limits="[0,950,1000]"
+					data-colors='["#ff9999","#aa6900","#9999ff"]'></div>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="pressure_trend_sym"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Sicht:</td>
+			<td>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="visibility"
+					data-unit=" km"></div>
+			</td>
+		</tr>
+	</table>
+	<table>
+	<tr>
+	        <div class="cell">
+               <div data-type="label" 
+			data-device="BK_TH"
+                        data-part="2" 
+			data-limits='[-73,0,30]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-unit="%B0C%0A" 
+			class="cell big inline wider"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-part="4"  
+			data-unit="%" 
+			class="cell big inline wider"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-get="dewpoint" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]'  
+			data-unit="%B0C%0A" 
+			class="cell big inline wider"></div>
+			</div>
+				<div class="cell">
+				<div data-type="label" class="darker small inline">Temperatur</div>
+				<div data-type="label" class="darker small inline">Luftfeuchte</div>
+				<div data-type="label" class="darker small inline">Taupunkt</div>
+			</div>
+	</tr>
+	</table>
+</div>
+</li>
+
+<li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Windrichtung</header>
+	<div data-type="wind_direction" 
+		data-device="Wetter_LGN"
+		data-direction="wind_direction"
+		data-speed="wind_speed"
+		data-calm="-"
+		data-size="80"
+		data-tickstep="45"
+		data-angleoffset="0"></div>
+</li>
+
+<li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+        <header>UV</header>
+<div class="centered">
+    <div data-type="label" 
+        data-device="UVOZON" 
+        data-get="UV"  
+        data-unit=" min" 
+        data-limits='[0,29,59,119,239]'
+        data-colors='["fuchsia","red","orange","#aa6900", "white"]'
+        class="big"></div>
+    <div data-type="label" data-device="UVOZON" data-get="UVDesc" style="margin-top:20px;width:100px;height:100px;white-space:normal" class="narrow small"></div>
+</div>    
+</li>
+
+<li data-row="3" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Ozon</header>
+<div class="centered">
+    <div data-type="label" 
+        data-device="UVOZON" 
+        data-get="Ozon" 
+        data-unit=" µg/m3" 
+        data-limits='[0,110,180,200,360]'
+        data-colors='["#aa6900","yellow","orange","red","fuchsia"]'
+        class="big"></div>
+    <div data-type="label" data-device="UVOZON" data-get="OzonDesc" style="margin-top:20px" class="narrow small"></div>
+</div>    
+</li>
+
+<li data-row="3" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Sonne A/U</header>
+	<div data-type="label" class="darker small">Sonnenaufgang</div>
+	<span style="color:#aa6900"><div data-type="label" 
+		data-device="Sonnenaufgang"
+		data-colors="orange"></div></span>
+	<div data-type="label" class="darker small">Sonnenuntergang</div>
+	<span style="color:#aa6900"><div data-type="label" 
+		data-device="Sonnenuntergang"
+		data-colors="orange"></div></span>
+</li>
+
+
+<li data-row="4" data-col="2" data-sizex="1" data-sizey="2">
+<div class="container weather">
+<header>HEUTE</header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="fc1_condition"
+						data-imageset="kleinklima"
+						style="width:100px"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc1_condition"></div>
+	<br>			
+			Temp: <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc1_low_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+				/ <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc1_high_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+</li>
+
+<li data-row="4" data-col="3" data-sizex="1" data-sizey="2">
+<div class="container weather">
+<header><div data-type="label" 
+						data-device="Wetter_LGN" 
+						data-get="fc2_day_of_week"
+						style="display:inline"></div></header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="fc2_condition"
+						data-imageset="kleinklima"
+						style="width:100px"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc2_condition"></div>
+	<br>			
+			Temp: <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc2_low_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+				/ <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc2_high_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+</li>
+
+<li data-row="4" data-col="4" data-sizex="1" data-sizey="2">
+<div class="container weather">
+<header><div data-type="label" 
+						data-device="Wetter_LGN" 
+						data-get="fc3_day_of_week"
+						style="display:inline"></div></header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="fc3_condition"
+						data-imageset="kleinklima"
+						style="width:100px"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc3_condition"></div>
+	<br>			
+			Temp: <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc3_low_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+				/ <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc3_high_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+</li>
+
+<li data-row="4" data-col="5" data-sizex="1" data-sizey="2">
+<div class="container weather">
+<header><div data-type="label" 
+						data-device="Wetter_LGN" 
+						data-get="fc4_day_of_week"
+						style="display:inline"></div></header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="fc4_condition"
+						data-imageset="kleinklima"
+						style="width:100px"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc4_condition"></div>
+	<br>			
+			Temp: <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc4_low_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+				/ <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc4_high_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+</li>
+
+<li data-row="4" data-col="6" data-sizex="1" data-sizey="2">
+<div class="container weather">
+<header><div data-type="label" 
+						data-device="Wetter_LGN" 
+						data-get="fc5_day_of_week"
+						style="display:inline"></div></header>
+	<table width="100%">
+		<tr>
+			<td rowspan="5" style="text-align:center;vertical-align:top">
+				<div data-type="weather"
+						data-device="Wetter_LGN"
+						data-get="fc5_condition"
+						data-imageset="kleinklima"
+						style="width:100px"></div>
+	<br>
+				<div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc5_condition"></div>
+	<br>			
+			Temp: <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc5_low_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+				/ <div data-type="label"
+					data-device="Wetter_LGN"
+					data-get="fc5_high_c"
+					data-limits="[-50,-30,40]"
+					data-colors='["#9999ff","#aa6900","#ff0000"]'
+					data-unit=" °C"
+					class="inline"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+</li>
+
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

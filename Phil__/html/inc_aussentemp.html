@@ -1,0 +1,102 @@
+ <!--       <header>Aussentemperatur</header>
+        <div class="cell">
+               <div data-type="label" 
+			data-device="BK_TH"
+                        data-part="2" 
+			data-limits='[-73,0,30]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-part="4"  
+			data-unit="%" 
+			class="cell big inline"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-get="dewpoint" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]'  
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+        </div>
+        <div class="cell">
+		<div data-type="label" class="darker small inline">Temperatur</div>
+		<div data-type="label" class="darker small inline">Luftfeuchte</div>
+		<div data-type="label" class="darker small inline">Taupunkt</div>
+	</div>
+	-->
+
+
+	
+<header>Aussentemperatur</header>	
+	<table width="100%">
+	<tr><td>
+               <div data-type="label" 
+			data-device="BK_TH"
+                        data-part="2" 
+			data-limits='[-73,0,30]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+	</td>
+	 <td>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-part="4"  
+			data-unit="%" 
+			class="cell big inline"></div>
+	</td>
+	 <td>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-get="dewpoint" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]'  
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+	</td></tr>
+	
+	<tr><td>	
+		<div data-type="label" class="darker small inline">Temperatur</div>
+	</td>
+	 <td>
+		<div data-type="label" class="darker small inline">Luftfeuchte</div>
+	</td>
+	 <td>	
+		<div data-type="label" class="darker small inline">Taupunkt</div>
+	</td></tr>
+	
+	<tr><td>
+	<div data-type="klimatrend"
+    data-device="BK_TH"
+    data-get="statTemperatureTendency"
+    data-refperiod="1"
+	class="inline narrow"></div>
+	<div data-type="klimatrend"
+    data-device="BK_TH"
+    data-get="statTemperatureTendency"
+    data-refperiod="2"
+	class="inline narrow"></div>
+	</td>
+	<td>
+	<div data-type="klimatrend"
+    data-device="BK_TH"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+	class="inline narrow"></div>
+	<div data-type="klimatrend"
+    data-device="BK_TH"
+    data-get="statHumidityTendency"
+    data-refperiod="2"
+	class="inline narrow"></div>
+	</td>
+	</tr>
+	 
+	</table>
+</li>
+

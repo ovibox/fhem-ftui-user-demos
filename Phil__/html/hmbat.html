@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="110">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_system.html"></li>
+
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+        <header>System</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="system.html" data-icon="fa-cloud" class="cell small"></div>
+        <div data-type="label" class="narrow darker">System</div>
+</li>
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<!-- =============== Batterie ============= -->
+<!-- ====================================== -->
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="4">
+<header>BATTERIE</header>
+	<table width="100%">
+		<tr>
+
+	<!--<td rowspan="5" style="text-align:center;vertical-align:top">-->
+	<td>
+            <div data-type="symbol" 
+			data-device="BK_TH" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">BK_TH</div> 
+			
+            <div data-type="symbol" 
+			data-device="WTH_WZ_Climate" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_WZ</div> 
+
+            <div data-type="symbol" 
+			data-device="WTH_KZ_Climate" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_KZ</div> 
+			
+            <div data-type="symbol" 
+			data-device="WTH_SZ" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_SZ</div> 	
+
+            <div data-type="symbol" 
+			data-device="WTH_WK" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_WK</div>
+
+            <div data-type="symbol" 
+			data-device="WTH_BAD_OG_Climate" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_BAD_OG</div>
+
+			<div data-type="symbol" 
+			data-device="WTH_BAD_DG" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">WTH_BAD_DG</div>
+			
+	</td>
+		<td>
+            <div data-type="symbol" 
+			data-device="SEC_WC_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WC_01</div> 
+			
+            <div data-type="symbol" 
+			data-device="SEC_HT_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_HT_01</div> 
+
+            <div data-type="symbol" 
+			data-device="SEC_KU_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_KU_01</div> 
+			
+            <div data-type="symbol" 
+			data-device="SEC_WZ_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_01</div> 	
+
+            <div data-type="symbol" 
+			data-device="SEC_WZ_02" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_02</div>
+
+            <div data-type="symbol" 
+			data-device="SEC_WZ_03" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_03</div>
+
+			<div data-type="symbol" 
+			data-device="SEC_WZ_04" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_04</div>
+			
+	</td>
+	
+		</td>
+		<td>
+            <div data-type="symbol" 
+			data-device="SEC_KT_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_KT_01</div> 
+			
+            <div data-type="symbol" 
+			data-device="SEC_BAD_OG" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_BAD_OG</div> 
+
+            <div data-type="symbol" 
+			data-device="FB_SEC_01" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">FB_SEC_01</div> 
+			
+            <div data-type="symbol" 
+			data-device="FB_SEC_02" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">FB_SEC_02</div> 	
+
+            <div data-type="symbol" 
+			data-device="SIGNAL_SEC_Switch" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SIGNAL_SEC_Switch</div>
+
+            <!--<div data-type="symbol" 
+			data-device="SEC_WZ_03" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_03</div>
+
+			<div data-type="symbol" 
+			data-device="SEC_WZ_04" data-get="battery" 
+			data-get-on='["ok","Wert2","low"]' 
+			data-on-colors='["SeaGreen","SlateBlue","IndianRed"]' 
+			data-icons='["oa-measure_battery_100","fa-exclamation-circle","oa-measure_battery_25 fa-blink"]' 
+			class="readonly"></div>
+			<div class="cell narrow small dark">SEC_WZ_04</div>-->
+			
+	</td>
+</tr>
+</table>	
+</li>	
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>
