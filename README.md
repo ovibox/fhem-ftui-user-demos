@@ -1,9 +1,9 @@
 # fhem-ftui-user-demos
 <p>User demos for Fhem FTUI <a href="http://fhem.de/fhem.html">    http://fhem.de/fhem.html</a></p>
 
-<p>Ihr findet hier im folgenden Fhem-FTUI-User-Demos. Diese sollen euch 
-
-<p><strong>1. Sinn des Threads:</strong></p>
+<p>Ihr findet hier im folgenden Fhem-FTUI-User-Demos.</p> <a href="http://fhem.de/fhem.html">    http://fhem.de/fhem.html</a></p> 
+<p>Hier der entsprechende Thread im Fhem Forum:<a href="http://fhem.de/fhem.html">    http://fhem.de/fhem.html</a></p> 
+<p><strong>1. Sinn des Ganzen:</strong></p>
 
 <li>Zeigen was mit FTUI möglich ist</li>
 <li>Sein eigenes UI präsentieren und anderen Usern Anregungen und Hilfe bieten.</li>
