@@ -21,7 +21,7 @@
 <li>Es ist natürlich an euch selbst, die Demos hin und wieder durch senden eines aktuellen Standes aktuell zu halten.</li>
 
 
-<p>Der Code in diesem Repository ist immer als Momentaufnahme zu verstehen, da die meisten User ihren Code stetik weiter entwickeln. Ist ist an den Usern hier öfters mal Aktualisierungen zu senden. ;-)</p>
+<p>Der Code in diesem Repository ist immer als Momentaufnahme zu verstehen, da die meisten User ihren Code stetik weiter entwickeln. Es ist ist an den Usern hier öfters mal Aktualisierungen zu senden. ;-)</p>
 
 <h2>
 <a id="user-content-requires" class="anchor" href="#requires" aria-hidden="true"><span class="octicon octicon-link"></span></a>User-Demo Phil__</h2>
