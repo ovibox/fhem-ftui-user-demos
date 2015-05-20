@@ -9,9 +9,9 @@
 <p>Beispiel:</p>
 </ul>
 
-<p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/index.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/index.JPG" style="max-width:100%;"></p>
-<p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/heating.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/heating.JPG" style="max-width:50%;"width="50%">
-<img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/wetter.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/wetter.JPG" style="max-width:50%;"width="50%"></p>
+<p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/index.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/index.JPG" style="max-width:100%;"width="65%"></p>
+<p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/heating.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/heating.JPG" style="max-width:50%;"width="50%"></p>
+<p><img src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/wetter.JPG" alt="" data-canonical-src="https://github.com/ovibox/fhem-ftui-user-demos/blob/master/user-demos/Phil__/screenshots/wetter.JPG" style="max-width:50%;"width="50%"></p>
 
 <ul>
 <p>mehr hier: <a href="https://github.com/ovibox/fhem-ftui-user-demos/tree/master/user-demos/Phil__">https://github.com/ovibox/fhem-ftui-user-demos/tree/master/user-demos/Phil__</a></p>
