@@ -3,7 +3,7 @@
 
 <p>Ihr findet hier im folgenden Fhem-FTUI-User-Demos. Diese sollen euch 
 
-<li><strong>1. Sinn des Threads:</strong></li>
+<p><strong>1. Sinn des Threads:</strong></p>
 
 <li>Zeigen was mit FTUI möglich ist</li>
 <li>Sein eigenes UI präsentieren und anderen Usern Anregungen und Hilfe bieten.</li>
@@ -11,7 +11,7 @@
 <li>Neuen Usern den Einstieg mit zahlreichen Beispielen erleichtern</li>
 
 
-<li><strong>2. Wie kann ich anderen meine FTUI zur Verfügung stellen?</strong></li>
+<p><strong>2. Wie kann ich anderen meine FTUI zur Verfügung stellen?</strong></p>
 
 <li>Screenshots von den FTUI Seiten erstellen ggf. als zip/rar zusammenfassen.</li>
 <li>html Seiten/Code am besten als zip/rar zusammenfassen.</li>
