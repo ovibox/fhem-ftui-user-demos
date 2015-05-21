@@ -2,7 +2,7 @@
 <p>User demos for Fhem FTUI <a href="http://fhem.de/fhem.html">    http://fhem.de/fhem.html</a></p>
 
 <p>Ihr findet hier im folgenden Fhem-FTUI-User-Demos.</p> 
-<p>Hier der entsprechende Thread im Fhem Forum:<a href="http://fhem.de/fhem.html">    http://fhem.de/fhem.html</a></p> 
+<p>Hier der entsprechende Thread im Fhem Forum:<a href="http://forum.fhem.de/index.php?topic=37378.msg296510#msg296510">    http://forum.fhem.de/index.php?topic=37378.msg296510#msg296510</a></p> 
 <p><strong>1. Sinn des Ganzen:</strong></p>
 
 <li>Zeigen was mit FTUI möglich ist</li>
