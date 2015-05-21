@@ -1,0 +1,24 @@
+/* overwritten classes which are not customizable enough in Themeroller */
+
+.ui-widget {
+	font-family: inherit;
+	font-size: inherit;
+}
+.ui-widget .ui-widget {
+	font-size: inherit;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+
+/* new class-definitions not customizable by Themeroller */
+
+.ui-tabs-panel {
+    border:1px solid #505050 !important;
+    border-radius:4px;
+}

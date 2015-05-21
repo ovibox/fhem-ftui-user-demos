@@ -1,0 +1,211 @@
+body {
+    // font-size: small;
+    font-size: 12px;
+}
+
+.bigger {
+    font-size: 38px !important;
+} 
+.big {
+    font-size: 24px;
+}
+.large {
+    font-size: 18px;
+}
+.small {
+    font-size: 10px;
+}
+
+.centered {
+ margin-left:auto;
+ margin-right:auto;
+ display:table;
+}
+
+#daydream {
+    position:absolute;
+    top:0;
+    left:0;
+    background-color:black;
+    opacity:0.99;//0.92;
+    width:940px;
+    height:565px;
+    z-index:101;
+}
+#daydream iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:none;
+    z-index:103;
+}
+#daydream .clock {
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:none;
+    color:#6666cc;
+    font-size:50px;
+    z-index:102;
+    text-shadow:0 0 10px black;
+    font-family: "Helvetica Neue", "Helvetica", "Open Sans", "Arial", "Helvetica", sans-serif; 
+    -webkit-font-smoothing: antialiased;
+}
+
+div.subheader {
+    margin:10px;
+    
+    margin-bottom:0px;
+	color: #8c8c8c;
+	display: block;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: normal;
+	padding: 4px 10px ;
+	padding-top:10px;
+	padding-bottom:2px;
+	cursor: move;
+	border-bottom:1px solid #8c8c8c;
+}
+
+table.calls {
+    font-size:16px;
+    width:100%;
+}
+
+table.calls td {
+    padding-left:10px;
+    text-align:left;
+}
+
+table.calls td.r {
+    text-align:right;
+    padding-right:10px;
+}
+
+table.calls td.ruler {
+    padding:0px;
+}
+
+table.calls td.ruler div {
+    border-top:1px solid silver;
+    margin:10px;
+    height:0px;
+}
+
+.big, [data-type="label"].big {
+    font-size: 28px !important;
+	color: #aa6900;
+	margin-top: 10px  !important;
+	margin-bottom: -5px  !important;
+}
+
+.medium {
+    font-size: x-large;
+	color: #aa6900;
+	margin-top: 10px;
+	margin-bottom: -5px  !important;
+}
+
+.small {
+    font-size: 14px;
+	margin-top: 3px !important;
+	margin-bottom: -5px !important;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+// weather-vertical
+div.weather td {
+    padding:0px;
+    padding-left:3px;
+    text-align:left;
+    white-space:nowrap;
+}
+div.weather tr td:nth-child(2) {
+    text-align:right;
+    padding-right:5px;
+}
+div.weather div[data-type=label] {
+    display:inline-block;
+    font-weight:bold;
+    white-space:normal;
+}
+div.weather div[data-type=symbol] {
+    display:inline-block;
+    margin-top:-3px;
+    margin-bottom:-3px;
+}
+
+.meteocons:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+	color: #aa6900;
+}
+
+.meteocons_grey:before {
+	font-family: 'MeteoconsRegular';
+	content: attr(data-icon);
+	color: #2a2a2a;
+}
+
+iframe {
+    background-color: transparent;
+    overflow:hidden;
+    border:none;
+}
+
+table.pollen {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width:100%;
+}
+
+table.pollen td  {
+    padding:0px;
+    margin:0px;
+    text-align:center;
+    vertical-align:middle;
+    width:25%;
+}
+
+//.widget_settimer_buttons {
+//    margin-top:7px;
+//    margin-right:10px;
+//}
+//.widget_settimer_knobs {
+//    margin-top:5px;
+//    margin-left:10px;
+//}
+
+select {
+    background-color:#2a2a2a;
+}
+#streamradioplaylists div[data-type=button] {
+    font-size:18px;
+    margin-top:2px !important;
+    margin-left:20px !important;
+}
+
+#streamradioplaylists div[data-type=symbol] {
+    font-size:18px;
+    margin-top:1px !important;
+}
+                                            
+#streamradioplaylists div[data-type=label] {
+    font-size:18px;
+    font-weight:bolder;
+    color:#2a2a2a;
+    background-color:#aa6900;
+    border:1px solid #505050;
+    border-radius:18px;
+    padding:3px;
+    padding-left:18px;
+    padding-right:18px;
+    min-width:200px;
+    cursor:pointer;
+    text-align:left;
+}

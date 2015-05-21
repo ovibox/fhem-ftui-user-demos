@@ -1,0 +1,857 @@
+<!doctype html>
+<html>
+<head>
+    <title>WOPR :: FTUI 
+     :: Schlafzimmer Mpd    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1.1 user-scalable=yes">    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="widget_base_width" content="120">
+    <meta name="widget_base_height" content="131">
+    <meta name="fhemweb_url" content="/fhem">
+    <meta name="longpoll" content="1">
+    <meta name="request_cache" content="100">
+    <meta name="gridster_disable" content="1">
+    <meta name="widget_dir" content="../Widgets-for-fhem-tablet-ui/js">
+    <meta name="debug" content="0">
+    
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/jquery.gridster.min.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/css/fhem-tablet-ui.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/openautomation.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/fhemSVG.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/jquery.toast.min.css">
+    <link rel="stylesheet" href="../fhem-tablet-ui/www/tablet/lib/powerange.min.css" />
+    <link rel="stylesheet" href="../css/wopr.css">
+    
+    <script type="text/javascript" src="../pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="../pgm2/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="../css/theme/amber/jquery-ui.structure.css" />
+    <link rel="stylesheet" href="../css/theme/amber/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="../css/theme/amber/ftui.css" />
+    
+    <link rel="stylesheet" href="../fonts/nesges/style.css">
+    
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/jquery.knob.mod.min.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/lib/jquery.circlemenu.js"></script>
+    
+    <script type="text/javascript" src="../js/subtype-defaults.js"></script>
+    <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/js/fhem-tablet-ui.js"></script>
+
+    <script type="text/javascript" src="../js/colors.js"></script>
+</head>
+<body>
+    <div data-type="clicksound"
+        data-sound='["ion-tap", "ion-water-droplet-2", "ion-button-tiny", "ion-cd-tray", "ion-water-droplet-3"]'
+        data-bind-to='["+knob", "+circlemenu-outer", "+button", "+circlemenu-center", "+slider"]'
+        data-length='[200,300,200,1400,200]'
+        data-volume="70"
+        ></div>
+        
+        <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/js/widget_clicksound.js"></script>
+        <script type="text/javascript" src="../fhem-tablet-ui/www/tablet/js/widget_famultibutton.js"></script>
+    <div class="gridster">
+<ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+        <header>R&Auml;UME</header>
+    	<script type="text/javascript">			
+    $(document).ready(function() {
+        var path = document.location.pathname;
+        var roomname = "room_index";
+        if(path.lastIndexOf('.')>-1) {
+            roomname = "room_" + path.substring(path.lastIndexOf('/') + 1, Math.min(path.lastIndexOf('.'), (path.indexOf('-')>0?path.indexOf('-'):9999)));
+        }
+        $('head').append('<style type="text/css">#'+roomname+' #bg { color: rgb(170,105,0) !important; }</style>');
+    });
+</script>
+<div class="container">
+    <div id="room_index" data-type="button" data-url="index.php" data-icon="fa-home" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+    
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half" data-circle-radius="90">
+        <ul class="menu">
+            <li><div data-type="symbol" id="room_wohnzimmer" data-icon="nesges-sofa" data-on-background-color="rgb(111,69,0)" data-off-background-color="rgb(111,69,0)" data-on-color="#2a2a2a" data-off-color="#2a2a2a" data-background-icon="fa-circle"></div></li>
+            <li><div data-type="button"
+                    data-url="wohnzimmer.php"
+                    data-icon="fa-line-chart"
+                    data-off-background-color="#aa6900"></div></li>
+            <li><div data-type="button"
+                    data-device="WATER"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-url="wohnzimmer-pc.php"
+                    data-icon="fa-laptop"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="W_XBMC"
+                    data-get-on="opened"
+                    data-get-off="disconnected"
+                    data-url="wohnzimmer-xbmc-simple.php"
+                    data-icon="nesges-kodi"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="MILIGHT_Zone1_Wohnzimmer"
+                    data-get-on="on.*"
+                    data-get-off="off"
+                    data-url="wohnzimmer-milight.php"
+                    data-icon="fa-lightbulb-o"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="switch" data-device="W_SWITCH_D1_Monitore" data-icon="fa-desktop" data-color="#505050"></div></li>
+            <li><div data-type="button" 
+                    data-device="WATER"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-fhem-cmd="{eventghost('WATER','Winamp Playlist DLF')}" data-icon="fa-comment-o" data-on-background-color="#2E8AE6"></div></li>
+        </ul>
+    </div>
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half" data-circle-radius="130">
+        <ul class="menu">
+            <li><div data-type="symbol" id="room_kueche" data-icon="fa-cutlery" data-on-background-color="rgb(111,69,0)" data-off-background-color="rgb(111,69,0)" data-on-color="#2a2a2a" data-off-color="#2a2a2a" data-background-icon="fa-circle"></div></li>
+            <li><div id="" data-type="button" data-url="kueche.php" data-icon="fa-line-chart" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="button"
+                    data-device="MCP"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-url="kueche-mpd.php"
+                    data-icon="nesges-radio2"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div id="" data-type="button" data-url="kueche-xbmc.php" data-icon="nesges-kodi" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="button"
+                    data-device="MILIGHT_Zone3_Kueche"
+                    data-get-on="on.*"
+                    data-get-off="off"
+                    data-url="kueche-milight.php"
+                    data-icon="fa-lightbulb-o"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div id="" data-type="button" data-url="kuehlschrank.php" data-icon="fa-star-o" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="button" data-fhem-cmd="{kodi_streamradio('MCP_KODI','rockantenne')}" data-icon="fa-bolt" data-on-background-color="#2E8AE6"></div></li>
+            <li><div data-type="button" data-fhem-cmd="{kodi_streamradio('MCP_KODI','steffi')}" data-icon="fa-music" data-on-background-color="#2E8AE6"></div></li>
+            <li><div data-type="button" data-fhem-cmd="{kodi_streamradio('MCP_KODI','dlf')}" data-icon="fa-comment-o" data-on-background-color="#2E8AE6"></div></li>
+        </ul>
+    </div>
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half" data-circle-radius="130">
+        <ul class="menu">
+            <li><div data-type="symbol" id="room_schlafzimmer" data-icon="fa-bed" data-on-background-color="rgb(111,69,0)" data-off-background-color="rgb(111,69,0)" data-on-color="#2a2a2a" data-off-color="#2a2a2a" data-background-icon="fa-circle"></div></li>
+            <li><div id="" data-type="button" data-url="schlafzimmer.php" data-icon="fa-line-chart" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="button"
+                    data-device="REVO"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-url="schlafzimmer-pc.php"
+                    data-icon="fa-laptop"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="FLUX"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-url="schlafzimmer-mpd.php"
+                    data-icon="nesges-radio2"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="S_XBMC"
+                    data-get-on="opened"
+                    data-get-off="disconnected"
+                    data-url="schlafzimmer-xbmc-simple.php"
+                    data-icon="nesges-kodi"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="MILIGHT_Zone2_Schlafzimmer"
+                    data-get-on="on.*"
+                    data-get-off="off"
+                    data-url="schlafzimmer-milight.php"
+                    data-icon="fa-lightbulb-o"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div id="" data-type="button" data-url="schlafzimmer-wecker.php" data-icon="nesges-alarmclock" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="push" data-device="S_SWITCH_A2_TV" data-set="on-for-timer 3600" data-icon="fa-desktop"></div></li>
+            <li><div data-type="push" data-device="S_SWITCH_C2_Sterne" data-set="on-for-timer 900" data-icon="fa-lightbulb-o"></div></li>
+        </ul>
+    </div>
+    
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half">
+        <ul class="menu">
+            <li><div data-type="symbol" id="room_buero" data-icon="nesges-user-tie" data-on-background-color="rgb(111,69,0)" data-off-background-color="rgb(111,69,0)" data-on-color="#2a2a2a" data-off-color="#2a2a2a" data-background-icon="fa-circle"></div></li>
+            <li><div id="" data-type="button" data-url="buero.php" data-icon="fa-line-chart" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div data-type="button"
+                    data-device="MIST"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-url="buero-pc.php"
+                    data-icon="fa-laptop"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button"
+                    data-device="B_XBMC"
+                    data-get-on="opened"
+                    data-get-off="disconnected"
+                    data-url="buero-xbmc-simple.php"
+                    data-icon="nesges-kodi"
+                    data-on-color="white"
+                    data-off-background-color="rgb(111,69,0)"></div></li>
+            <li><div data-type="button" 
+                    data-device="MIST"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-fhem-cmd="{eventghost('MIST','Winamp Play Toggle')}" 
+                    data-icon="fa-play" 
+                    data-on-background-color="#FFCC00"></div></li>
+            <li><div data-type="button" 
+                    data-device="MIST"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-fhem-cmd="{eventghost('MIST','Winamp Playlist DLF')}" 
+                    data-icon="fa-comment-o" 
+                    data-on-background-color="#2E8AE6"></div></li>
+        </ul>
+    </div>
+
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half" data-circle-radius="130">
+        <ul class="menu">
+            <li><div data-type="symbol" id="room_system" data-icon="fa-info" data-on-background-color="rgb(111,69,0)" data-off-background-color="rgb(111,69,0)" data-on-color="#2a2a2a" data-off-color="#2a2a2a" data-background-icon="fa-circle"></div></li>
+            <li><div id="options_status" data-type="button" data-url="system-status.php" data-icon="fa-info" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="" data-type="button" data-url="system-light.php" data-icon="fa-lightbulb-o" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="options_calls" data-type="button" data-url="system-calls.php" data-icon="fa-phone" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="options_timers" data-type="button" data-url="system-timers.php" data-icon="fa-clock-o" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="options_plots" data-type="button" data-url="system-plots.php?p=HUMID_ALL" data-icon="fa-line-chart" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="options_calendar" data-type="button" data-url="system-calendar.php" data-icon="fa-calendar" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="options_cinema" data-type="button" data-url="system-kino.php" data-icon="fa-video-camera" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="" data-type="button" data-url="system-its150.php" data-icon="fa-mobile" data-on-background-color="#aa6900" class=""></div>
+</li>
+            <li><div id="" data-type="button" data-url="system-options.php" data-icon="fa-gears" data-on-background-color="#aa6900" class=""></div>
+</li>
+        </ul>
+    </div>
+
+    <div id="room_aussen" data-type="button" data-url="aussen.php" data-icon="fa-sun-o" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+    
+    <div data-type="circlemenu" class="cell circlemenu" data-direction="right-half">
+        <ul class="menu">
+            <li><div data-type="symbol" data-icon="fa-check-circle" data-off-color="#aa6900" data-background-icon="fa-circle-thin"></div></li>
+            <li><div data-type="push" data-cmd="{preset('schlafen')}" data-icon="fa-bed" data-off-background-color="#aa6900"></div></li>
+            <li><div data-type="push" data-cmd="{preset('kino')}" data-icon="nesges-tv2" data-off-background-color="#aa6900"></div></li>
+            <li><div data-type="push" data-cmd="{preset('party')}" data-icon="fa-glass" data-off-background-color="#aa6900"></div></li>
+            <li><div data-type="push" data-cmd="{preset('leave')}" data-icon="nesges-exit" data-off-background-color="#aa6900"></div></li>
+        </ul>
+    </div>
+
+    <div style="padding-top:10px;font-size:20px;color:rgb(170,105,0);text-shadow: 0px 0px 3px rgb(42,42,42)" data-type="clock"></div>
+</div>
+    </li>
+    
+    <li data-row="2" data-col="2" data-sizex="3" data-sizey="4" id="streamradioplaylists" style="overflow:auto">
+        <header>STATIONS</header>
+                <div style="display:table">
+            <div id="rockantenne" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','rockantenne')}" data-icon="fa-bolt" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantenne" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#rockantenne').click()">RA Heavy Metal</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantenne" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="rockantenneclassic" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','rockantenneclassic')}" data-icon="fa-bolt" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantenneclassic" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#rockantenneclassic').click()">RA Classic Perlen</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantenneclassic" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="rockantennealternative" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','rockantennealternative')}" data-icon="fa-bolt" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantennealternative" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#rockantennealternative').click()">RA Alternative</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockantennealternative" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="rockradiodeathmetal" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','rockradiodeathmetal')}" data-icon="fa-bolt" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockradiodeathmetal" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#rockradiodeathmetal').click()">Rockradio Deathmetal</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="rockradiodeathmetal" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="dlf" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','dlf')}" data-icon="fa-comment-o" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dlf" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#dlf').click()">Deutschlandfunk</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dlf" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="dkultur" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','dkultur')}" data-icon="fa-comment-o" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dkultur" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#dkultur').click()">DRadio Kultur</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dkultur" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="dradiowissen" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','dradiowissen')}" data-icon="fa-comment-o" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dradiowissen" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#dradiowissen').click()">DRadio Wissen</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dradiowissen" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="tormentedradio" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','tormentedradio')}" data-icon="fa-cogs" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="tormentedradio" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#tormentedradio').click()">tormentedradio</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="tormentedradio" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="digitalgunfire" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','digitalgunfire')}" data-icon="fa-cogs" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="digitalgunfire" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#digitalgunfire').click()">Digital Gunfire</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="digitalgunfire" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="ebmradio" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','ebmradio')}" data-icon="fa-cogs" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="ebmradio" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#ebmradio').click()">EBM Radio</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="ebmradio" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="steffi" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','steffi')}" data-icon="fa-music" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="steffi" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#steffi').click()">Awesome Mix Vol.1</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="steffi" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+                <div style="display:table">
+            <div id="dnd" 
+                data-type="button" 
+                data-fhem-cmd="{mpd_streamradio('MPD_FLUX','dnd')}" data-icon="nesges-skull" 
+                data-on-color="#ffffff"
+                data-on-background-color="#0066FF"
+                data-off-background-color="#2E8AE6"
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dnd" 
+                data-get-off="!on"
+                class="cell"></div>
+            <div data-type="label" 
+                class="inline" 
+                onClick="$('#dnd').click()">Dungeons & Dragons</div>
+            <div data-type="symbol" 
+                data-device="MPD_FLUX" 
+                data-get="station"
+                data-set="station"
+                data-get-on="dnd" 
+                data-get-off="!on"
+                data-icon="fa-chevron-left" 
+                data-on-color="#aa6900" 
+                data-off-color="#2a2a2a" 
+                class="right"></div>
+        </div>
+            </li>
+    
+    <li data-row="1" data-col="5" data-sizex="3" data-sizey="3">
+        <header>PLAYER</header>
+                <div class="centered">
+            <div id="" data-type="button" data-fhem-cmd="set MPD_FLUX previous" data-icon="fa-backward" data-on-background-color="#AA6900" class="cell"></div>
+            <div
+                data-type="button" 
+                data-fhem-cmd="set MPD_FLUX pause" 
+                data-icon="fa-pause" 
+                data-on-background-color="#aa6900"
+                class="cell"></div>
+            <div
+                data-type="button" 
+                data-fhem-cmd="set MPD_FLUX play" 
+                data-icon="fa-play" 
+                data-on-background-color="#FFCC00"
+                class="cell"></div>
+            <div
+                data-type="button" 
+                data-fhem-cmd="set MPD_FLUX stop" data-icon="fa-stop" 
+                data-on-background-color="#aa6900"
+                class="cell"></div>
+            <div id="" data-type="button" data-fhem-cmd="set MPD_FLUX next" data-icon="fa-forward" data-on-background-color="#AA6900" class="cell"></div>
+        </div>
+        
+        <div id="mpdinfo" class="centered" style="margin-top:20px;margin-bottom:25px">
+            <div data-type="symbol" data-icon="fa-spinner fa-spin" style="height:1px;margin-top:-40px;"></div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $.get('http://FLUX/mpdinfo/')
+                    .success(function(data) {
+                        if(data.length>0) {
+                            $("#mpdinfo").html(data);
+                        }
+                    });
+                setInterval(function() { $.get('http://FLUX/mpdinfo/')
+                    .success(function(data) {
+                        if(data.length>0) {
+                            $("#mpdinfo").html(data);
+                        } else {
+                            $("#mpdinfo").empty();
+                            spinner = $('<div data-icon="fa-cog fa-spin" style="height:1px;margin-top:-40px;"></div>');
+                            spinner.famultibutton({
+                                    mode:'signal',
+                                    offBackgroundColor:'#2a2a2a',
+                                    offColor:'#505050'
+                            });
+                            spinner.appendTo("#mpdinfo");
+                        }
+                    }); }, 5000);
+            });
+        </script>
+        
+        <div class="centered" style="margin-bottom:25px">
+            <div data-type="push" 
+                data-set="volume 0" 
+                data-icon="fa-volume-off" 
+                data-off-background-color="#aa3333"
+                data-off-color="#2a2a2a"
+                data-on-color="#2a2a2a"
+                data-background-icon="fa-circle"
+                data-device="MPD_FLUX"
+                class="left"
+                onClick="$('#VolumeSlider').data('Powerange').setStart(0)"></div>
+            <div id="VolumeSlider"data-type="slider"
+                data-device="MPD_FLUX"
+                data-get="volume"
+                data-set="volume"
+                data-min="70"
+                data-max="100"
+                class="left horizontal"></div>
+            <div data-type="push" 
+                data-set="volume 100" 
+                data-icon="fa-volume-up" 
+                data-off-background-color="#aa3333"
+                data-off-color="#2a2a2a"
+                data-on-color="#2a2a2a"
+                data-background-icon="fa-circle"
+                data-device="MPD_FLUX"
+                class="left"
+                onClick="$('#VolumeSlider').data('Powerange').setStart(100)"></div>
+        </div>
+        <div class="centered">
+            <div data-type="button"
+                data-url="schlafzimmer-mpd-kodilib.php"
+                data-icon="fa-music"
+                data-on-background-color="#FFCC00"
+                class="cell"
+                ></div>
+            <div data-type="push"
+                data-device="MPD_FLUX"
+                data-get="repeat"
+                data-get-on="0"
+                data-get-off="1"
+                data-set="mpdCMD repeat 0;set MPD_FLUX mpdCMD single 0"
+                data-icon="fa-long-arrow-right"
+                data-background-icon="fa-circle"
+                data-on-color="white"
+                data-off-color="#2a2a2a"
+                data-off-background-color='#339999'
+                class="cell"></div>
+            <div data-type="push"
+                data-device="MPD_FLUX"
+                data-get="single"
+                data-get-on="1"
+                data-get-off="0"
+                data-set="mpdCMD single 1;set MPD_FLUX mpdCMD repeat 1"
+                data-icon="nesges-repeat-one"
+                data-background-icon="fa-circle"
+                data-on-color="white"
+                data-off-color="#2a2a2a"
+                data-off-background-color='#339999'
+                class="cell"></div>
+            <div data-type="push"
+                data-device="MPD_FLUX"
+                data-get="repeat"
+                data-get-on="1"
+                data-get-off="0"
+                data-set="mpdCMD single 0;set MPD_FLUX mpdCMD repeat 1"
+                data-icon="nesges-repeat"
+                data-background-icon="fa-circle"
+                data-on-color="white"
+                data-off-color="#2a2a2a"
+                data-off-background-color='#339999'
+                class="cell"></div>
+            <div data-type="button"
+                data-url="http://FLUX:8066/static/index.html"
+                data-icon="fa-star"
+                data-on-background-color='#0066FF'
+                class="cell"></div>
+        </div>
+        <div class="centered">
+            <div data-type="button"
+                data-url="schlafzimmer-mpd-kodilib.php?dir=audiobooks"
+                data-icon="nesges-books"
+                data-on-background-color="#FFCC00"
+                class="cell"
+                ></div>
+            <div data-type="push"
+                data-device="MPD_FLUX"
+                data-get="random"
+                data-get-on="1"
+                data-get-off="0"
+                data-set="mpdCMD random 0"
+                data-icon="nesges-ordered"
+                data-background-icon="fa-circle"
+                data-on-color="white"
+                data-off-color="#2a2a2a"
+                data-off-background-color='#9933FF'
+                class="cell"></div>
+
+            <div data-type="push"
+                data-device="MPD_FLUX"
+                data-get="random"
+                data-get-on="0"
+                data-get-off="1"
+                data-set="mpdCMD random 1"
+                data-icon="fa-random"
+                data-background-icon="fa-circle"
+                data-on-color="white"
+                data-off-color="#2a2a2a"
+                data-off-background-color='#9933FF'
+                class="cell"></div>
+
+            <div data-type="multistatebutton"
+                data-device="MPD_FLUX"
+                data-get="xfade"
+                data-get-on='["0","5", "10"]'
+                data-set='["mpdCMD crossfade 5","mpdCMD crossfade 10","mpdCMD crossfade 0"]'
+                data-set-default="mpdCMD crossfade 0"
+                data-icons='["fa-exchange","fa-exchange warn","fa-exchange warn"]'
+                data-background-colors='["#dd99dd","#aa66aa","#993399"]'
+                data-on-background-color="white"
+                class="cell"></div>
+        </div>
+        <div class="centered">
+                <div data-type="switch"
+                    data-device="S_SWITCH_D2_FLUX"
+                    data-icon="fa-plug"
+                    data-on-background-color="#505050"
+                    data-on-color="#aa6900"
+                    data-off-background-color="#aa6900"
+                    data-off-color="#2a2a2a"
+                    data-doubleclick="1000"
+                    class="cell"></div>
+
+                <div
+                    data-type="button" 
+                    data-fhem-cmd="{sshcmd('FLUX','shutdown -h now',2)}" data-icon="fa-power-off" 
+                    data-on-background-color="#505050"
+                    data-off-background-color="#505050"
+                    data-device="FLUX"
+                    data-get-on='present'
+                    data-get-off="absent"
+                    data-on-color="#aa6900"
+                    data-off-color="#2a2a2a"
+                    data-doubleclick="1000"
+                    class="cell"></div>
+
+                <div
+                    data-type="button" 
+                    data-fhem-cmd="{sshcmd('FLUX','shutdown -r now',2)}" data-icon="fa-refresh" 
+                    data-on-background-color="#505050"
+                    data-off-background-color="#505050"
+                    data-device="FLUX"
+                    data-get-on='present'
+                    data-get-off="absent"
+                    data-on-color="#aa6900"
+                    data-off-color="#2a2a2a"
+                    data-doubleclick="1000"
+                    class="cell"></div>
+            
+                <div data-type="button"
+                    data-device="FLUX"
+                    data-get-on="present"
+                    data-get-off="absent"
+                    data-fhem-cmd="set FLUX statusRequest"
+                    data-icon="nesges-radio-tower"
+                    data-background-icon="fa-circle"
+                    data-on-color="#aa6900"
+                    data-off-color="#2a2a2a"
+                    data-on-background-color="#505050"
+                    data-off-background-color="#505050"
+                    class="cell"></div>
+            
+            <div data-type="symbol"
+                data-device="MPD_FLUX"
+                data-get-on='["play","pause", "stop"]'
+                data-get-off="not conected"
+                data-icons='["fa-play","fa-pause","fa-stop"]'
+                data-background-icon='fa-circle'
+                data-on-background-color='#505050'
+                data-off-background-color="#505050"
+                data-on-color="#aa6900"
+                data-off-color="#2a2a2a"
+                class="cell"></div>
+        </div>
+    </li>
+    
+    <li data-row="4" data-col="5" data-sizex="3" data-sizey="1">
+        <header>WEITER</header>
+    	<div class="centered container">
+        <div class="left">
+	    <div id="pc" data-type="button" data-url="schlafzimmer-pc.php" data-icon="fa-laptop" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+	    <div data-type="label">PC</div>
+    </div>
+        <div class="left">
+	    <div id="pc" data-type="button" data-url="schlafzimmer-mpd.php" data-icon="nesges-radio2" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+	    <div data-type="label">Radio</div>
+    </div>
+        <div class="left">
+	    <div id="xbmc" data-type="button" data-url="schlafzimmer-xbmc-simple.php" data-icon="nesges-kodi" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+	    <div data-type="label">KODI</div>
+    </div>
+            <div class="left">
+	    <div id="milight" data-type="button" data-url="schlafzimmer-milight.php" data-icon="fa-lightbulb-o" data-on-background-color="rgb(111,69,0)" class="cell"></div>
+	    <div data-type="label">LICHT</div>
+    </div>
+    </div>
+    </li>
+</ul>    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+@font-face {
+	font-family: 'nesges';
+	src:url('fonts/nesges.eot?txsga8');
+	src:url('fonts/nesges.eot?#iefixtxsga8') format('embedded-opentype'),
+		url('fonts/nesges.woff?txsga8') format('woff'),
+		url('fonts/nesges.ttf?txsga8') format('truetype'),
+		url('fonts/nesges.svg?txsga8#nesges') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="nesges-"], [class*=" nesges-"] {
+	font-family: 'nesges';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/*line-height: 1;*/
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.nesges-skull:before {
+	content: "\e60c";
+}
+
+.nesges-radio2:before {
+	content: "\e60b";
+}
+
+.nesges-repeat:before {
+	content: "\e606";
+}
+
+.nesges-repeat-one:before {
+	content: "\e607";
+}
+
+.nesges-radio-tower:before {
+	content: "\e60a";
+}
+
+.nesges-ordered:before {
+	content: "\e608";
+}
+
+.nesges-user-tie:before {
+	content: "\e600";
+}
+
+.nesges-tv2:before {
+	content: "\e95b";
+}
+
+.nesges-fire:before {
+	content: "\e9a9";
+}
+
+.nesges-books:before {
+	content: "\e920";
+}
+
+.nesges-map:before {
+	content: "\e94b";
+}
+
+.nesges-hour-glass:before {
+	content: "\e979";
+}
+
+.nesges-man-woman:before {
+	content: "\e9de";
+}
+
+.nesges-enter:before {
+	content: "\ea13";
+}
+
+.nesges-exit:before {
+	content: "\ea14";
+}
+
+.nesges-podcast:before {
+	content: "\e609";
+}
+
+.nesges-sofa:before {
+	content: "\e605";
+}
+
+.nesges-alarmclock:before {
+	content: "\e601";
+}
+
+.nesges-radio:before {
+	content: "\e602";
+}
+
+.nesges-satellite:before {
+	content: "\e603";
+}
+
+.nesges-kodi:before {
+	content: "\e604";
+}
+
+.nesges-alarmclock:before {
+	content: "\e601";
+}
+
+.nesges-radio:before {
+	content: "\e602";
+}
+
+.nesges-satellite:before {
+	content: "\e603";
+}
+
