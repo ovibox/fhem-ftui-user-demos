@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="110">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />	
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_tv.html"></li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<!-- =============Spritpreise=============== -->
+<!-- ====================================== -->
+
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="4">
+    <header>Jetzt auf Sky Movie Sendern</header>
+    <table border="0px" width="100%">
+        <tr>
+            <td>
+    		<a href="./skycinema.html"><img src="./images/skycinema.png" width="100" height="50"></a>
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_next_time"></div>
+	    </td>
+        </tr>
+
+		<tr>
+            <td>
+    		<a href="./skycinema1.html"><img src="./images/skycinema1.png" width="100" height="50"></a>
+
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_1" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_1_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_1_next_time"></div>
+	    </td>
+        </tr>
+
+		<tr>
+            <td>
+    		<a href="./skycinema24.html"><img src="./images/skycinema24.png" width="100" height="50"></a>
+
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_24" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_24_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_24_next_time"></div>
+	    </td>
+        </tr>		
+
+		<tr>
+            <td>
+    		<a href="./skycinemahits.html"><img src="./images/skycinemahits.png" width="100" height="50"></a>
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_Hits" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_Hits_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Cinema_Hits_next_time" ></div>
+	    </td>
+        </tr>
+		
+		<tr>
+            <td>
+    		<a href="./skyatlantic.html"><img src="./images/skyatlantic.png" width="100" height="50"></a>
+
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Atlantic_HD" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Atlantic_HD_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Atlantic_HD_next_time"></div>
+	    </td>
+        </tr>
+
+		<tr>
+            <td>
+    		<a href="./sky3d.html"><img src="./images/sky3d.png" width="100" height="50"></a>
+
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_3D" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_3D_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_3D_next_time"></div>
+	    </td>
+        </tr>		
+
+		<tr>
+            <td>
+    		<a href="./skyaction.html"><img src="./images/skyaction.png" width="100" height="50"></a>
+
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="Sky_Action" style="color:#aa6900;"></div>
+            </td>
+	    <td>
+                <div type="label" device="Klack" data-get="Sky_Action_time"></div>
+	    </td>
+			    <td>
+                <div type="label" device="Klack" data-get="Sky_Action_next_time"></div>
+	    </td>
+        </tr>		
+		</table>
+
+</li>
+
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

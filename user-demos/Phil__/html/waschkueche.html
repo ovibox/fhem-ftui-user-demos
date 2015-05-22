@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="108">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <header>HOME</header>
+<div class="cell">
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="index.html" data-icon="fa-home" class="cell small"></div>
+<div data-type="label" class="small narrow darker">Home</div>			
+  </div> 
+</li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4">
+        <header>Menü</header>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="heating.html" data-icon="fa-fire" class="cell small"></div>
+        <div data-type="label" class="cell darker">Heizung</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="living.html" data-icon="fa-group" class="cell small"></div>
+        <div data-type="label" class="cell darker">Living</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="child.html" data-icon="fa-child" class="cell small"></div>
+        <div data-type="label" class="cell darker">Kind</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="info.html" data-icon="fa-info" class="cell small"></div>
+        <div data-type="label" class="cell darker">Info</div>
+</li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4">
+        <header>Menü</header>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="kalender.html" data-icon="fa-calendar" class="cell small"></div>
+        <div data-type="label" class="cell darker">Kalender</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="energie.html" data-icon="fa-bolt" class="cell small"></div>
+        <div data-type="label" class="cell darker">Energie</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="security.html" data-icon="fa-lock" class="cell small"></div>
+        <div data-type="label" class="cell darker">Security</div>
+<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="system.html" data-icon="fa-server" class="cell small"></div>
+        <div data-type="label" class="cell darker">System</div>
+</li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Wetter</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="wetter.html" data-icon="fa-cloud" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Wetter</div>
+</li>
+
+<li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+        <header>Telefon</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="telefon.html" data-icon="fa-phone" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Telefon</div>
+</li>
+
+<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+        <header>Tanken</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="tanken.html" data-icon="fa-car" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Tanken</div>
+</li>
+
+<li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+        <header>TV</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="tv.html" data-icon="fa-desktop" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Guide</div>
+</li>
+
+<li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Radio</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="radio.html" data-icon="fa-music" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Radio</div>
+</li>
+
+<li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Wäsche</header>
+	<div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="waschkueche.html" data-icon="fa-tint" class="cell small"></div>
+        <div data-type="label" class="narrow darker">Wäsche</div>
+</li>
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1">
+        <header>Aussentemperatur</header>
+        <div class="cell">
+               <div data-type="label" 
+			data-device="BK_TH"
+                        data-part="2" 
+			data-limits='[-73,0,30]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]' 
+			data-part="4"  
+			data-unit="%" 
+			class="cell big inline"></div>
+                <div data-type="label" 
+			data-device="BK_TH" 
+			data-get="dewpoint" 
+			data-limits='[-73,0,100]' 
+			data-colors='["#6699FF","#AA6900","#FF0000"]'  
+			data-unit="%B0C%0A" 
+			class="cell big inline"></div>
+        </div>
+        <div class="cell">
+		<div data-type="label" class="darker small inline">Temperatur</div>
+		<div data-type="label" class="darker small inline">Luftfeuchte</div>
+		<div data-type="label" class="darker small inline">Taupunkt</div>
+	</div>
+</li>
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
+        <header>Uhrzeit</header>
+	<div data-type="clock" data-format="H:i" class="container bigger"></div>
+	<div data-type="clock" data-format="d-m-Y" class="cell"></div>
+</li>
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Alarm</header>
+	<div data-type="switch" class="cell" 
+            data-device="Test-Alarmanlage-switch"
+	    data-icon="fa-lock"
+            data-get-on="on"
+            data-get-off="off">
+	</div>
+	<div data-type="label" 
+     		data-device="Test-Alarmanlage-switch" 
+     		data-get="state"
+     		class="cell big narrow darker">
+	</div>
+</li>
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="3" data-col="2" data-sizex="2" data-sizey="2">
+       <header>Info</header>
+</li>
+
+<!-- ============== Fenster ================ -->
+<!-- ======================================= -->
+<li data-row="4" data-col="4" data-sizex="3" data-sizey="2">
+        <header>Fenster</header>
+  <div class="cell">
+    <div class="left">
+        <div data-type="contact" data-device="SEC_WZ_01" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Terasse1</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_WZ_02" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Terasse2</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_WZ_03" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Terasse3</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_WZ_04" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Terasse4</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_HT_01" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Haustür</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_KT_01" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Kellertür</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_KU_01" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Küche</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_WC_01" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">WC</div>
+    </div>
+    <div class="left">
+        <div data-type="contact" data-device="SEC_BAD_OG" class="small narrow"></div>
+        <div data-type="label" class="narrow darker">Bad-OG</div>
+    </div>
+  </div>
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

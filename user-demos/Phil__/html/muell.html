@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="108">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_main.html"></li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="1">
+	<header>Abfall</header>
+	    <div class="cell">
+<div data-type="symbol" data-background-icon="fa-circle-thin " data-off-background-color="#7A7A7A" data-on-background-color="#7A7A7A" data-device="Gelbetonne" data-get='STATE' data-off-color="#E6E600" data-get-on='["off","^[01]$","^[1-9][0-9]|[2-9]$"]' data-icons='["fa-trash warn","fa-trash warn blink","fa-trash warn"]' data-on-colors='["#E6E600","#E6E600","#E6E600"]' class="bigger"></div>
+<div data-type="symbol" data-background-icon="fa-circle-thin " data-off-background-color="#7A7A7A" data-on-background-color="#7A7A7A" data-device="Biomuell" data-get='STATE' data-off-color="#996633" data-get-on='["off","^[01]$","^[1-9][0-9]|[2-9]$"]' data-icons='["fa-trash warn","fa-trash warn blink","fa-trash warn"]' data-on-colors='["#996633","#996633","#996633"]' class="bigger"></div>
+<div data-type="symbol" data-background-icon="fa-circle-thin " data-off-background-color="#7A7A7A" data-on-background-color="#7A7A7A" data-device="Papiertonne" data-get='STATE' data-off-color="#4747D1" data-get-on='["off","^[01]$","^[1-9][0-9]|[2-9]$"]' data-icons='["fa-trash warn","fa-trash warn blink","fa-trash warn"]' data-on-colors='["#4747D1","#4747D1","#4747D1"]' class="bigger"></div>
+<div data-type="symbol" data-background-icon="fa-circle-thin " data-off-background-color="#7A7A7A" data-on-background-color="#7A7A7A" data-device="Restmuell" data-get='STATE' data-off-color="grey" data-get-on='["off","^[01]$","^[1-9][0-9]|[2-9]$"]' data-icons='["fa-trash warn","fa-trash warn blink","fa-trash warn"]' data-on-colors='["gray","gray","gray"]' class="bigger"></div>
+      
+	 <div data-type="circlemenu" class="cell circlemenu" data-direction="bottom-left" style="position:absolute;z-index:1001;top:0px;right:0px;opacity:0.5">
+    <ul class="menu">
+        <li><div data-type="symbol" data-icon="fa-trash" data-off-color="#aa6900" data-background-icon="fa-circle-thin"></div></li>
+      <li><div data-type="button" data-url="muell.html" data-icon="fa-trash"></div></li>
+      <li><div data-type="button" data-url="umweltmobil.html" data-icon="fa-car"></div></li>
+    </ul>
+</div>   
+
+   </div>
+	</li>
+	
+<li data-row="3" data-col="2" data-sizex="5" data-sizey="1">
+	<header>Öffnungszeiten Wertstoffhof</header>	
+	    <div class="cell">
+            <h2>Wertstoffhof, Liebigstraße 29</h2><br>
+            <p><strong>Dienstag, Donnerstag und Freitag: 8:00 - 17:30 Uhr,
+                Samstag: 8:00 - 14:00 Uhr</strong><br>
+                Telefon 06103 595471</p>
+        </div>
+
+	</li>	
+	
+	
+		<div data-type="label"   
+	 class="cell left">CPU: </div>
+
+	
+	<li data-row="4" data-col="2" data-sizex="5" data-sizey="2">
+	<header>Annahmegebühren</header>	
+<table border="0">
+<tbody>
+<tr>
+<td><div class="cell left">Altholz IV (aus dem Außenbereich)</div></td>
+<td><div class="cell left">4,00 € pro 100 Liter</div></td>
+<td><div class="cell left">Bauschutt</div></td>
+<td><div class="cell left">2,00 € pro 100 Liter</div></td>
+</tr>
+<tr>
+<td><div class="cell left">Baustellenabfälle</div></td>
+<td><div class="cell left">4,00 € pro 100 Liter</div></td>
+<td><div class="cell left">Restmüll</div></td>
+<td><div class="cell left">4,00 € pro 100 Liter</div></td>
+</tr>
+<tr>
+<td><div class="cell left">LKW-Reifen</div></td>
+<td><div class="cell left">10,00 € je Stück</div></td>
+<td><div class="cell left">PKW-Reifen</div></td>
+<td><div class="cell left">2,00 € je Stück</div></td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Sperrmüll, Grünabfall und Altholz A I - III (Kofferraumgröße max 300L) frei.</p>
+<table border="0">
+<tbody>
+<tr>
+<td><div class="cell left">Altholz I - III (unbehandelt)</div></td>
+<td><div class="cell left">2,00 € pro 100 Liter</div></td>
+<td><div class="cell left">Grünabfälle</div></td>
+<td><div class="cell left">1,00 € pro 100 Liter</div></td>
+</tr>
+<tr>
+<td><div class="cell left">Sperrmüll</div></td>
+<td><div class="cell left">4,00 € pro 100 Liter</div></td>
+</tr>
+</tbody>
+</table>	
+	</li>	
+	
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

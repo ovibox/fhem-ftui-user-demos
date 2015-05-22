@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+         * Version: 1.3.5
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>FHEM-Tablet-UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="127">
+	<meta name="widget_base_height" content="110">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/openautomation.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/jquery.knob.mod.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+        <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl --><!-- -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,bigger,small,thin,large,wider -->
+<!-- available data-type: symbol,dimmer,homestatus,label,push,slider,switch,thermostat,volume,weather -->
+
+<div class="gridster">
+<ul>
+<!-- ============ Home-Button ============= -->
+<!-- ====================================== -->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" data-template="inc_homebutton.html"></li>
+
+<!-- ========= Linkes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="1" data-sizex="1" data-sizey="4" data-template="menu_left_main.html"></li>
+
+<!-- ========= Rechtes-Hauptmenü ========== -->
+<!-- ====================================== -->
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="4" data-template="menu_right_tv.html"></li>
+
+<!-- ========= Oberes-Hauptmenü =========== -->
+<!-- ====================================== -->
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" data-template="inc_wetterbutton.html"></li>
+
+
+<!-- ========= Aussentemperatur  =========== -->
+<!-- ======================================= -->
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1" data-template="inc_aussentemp.html"></li>
+
+
+<!-- ============= Uhrzeit ================ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" data-template="inc_uhr.html"></li>
+
+
+<!-- ============= Alarmanlage ============ -->
+<!-- ====================================== -->
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" data-template="inc_alarmbutton.html"></li>
+
+
+<!-- ============= Sender =============== -->
+<!-- ====================================== -->
+
+<li data-row="2" data-col="2" data-sizex="5" data-sizey="4">
+    <header>ZDF</header>
+		    <table border="0px" width="100%">
+        <tr>
+			<td>
+			<div style="font-size:15px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="ard.html" data-icon="fa-arrow-left"></div>
+			</td>
+			 <td>
+			<a href="./zdf.html"><img src="./images/zdf.png" width="50" height="50"></a>
+			</td>
+			<td>
+			<div style="font-size:15px; color:rgb(96, 0, 0);" data-type="button" data-color="#aa6900" data-url="rtl.html" data-icon="fa-arrow-right"></div>
+			</td>
+		</tr>
+		</table>
+			
+	    <table border="0px" width="100%">
+        <tr>	
+            <td>
+			<div type="label" class="cell">Jetzt :</div>
+			</td>
+					
+            <td>
+                <div type="label" device="Klack" data-get="ZDF" style="color:#aa6900;"></div>
+            </td>
+			
+			<td>
+                <div type="label" device="Klack" data-get="ZDF_time"></div>
+			</td>
+			
+			<td>
+                <div type="label" device="Klack" data-get="ZDF_next_time"></div>
+			</td>		
+			
+        </tr>
+		</table>
+		
+    <table border="0px" width="100%">
+        <tr>
+            <td>
+			<div data-type="image" data-device="Klack"
+				data-get="ZDF_image"
+				data-size="200px">
+			</div>
+		</td>
+            <td>
+                <div type="label" device="Klack" data-get="ZDF_details" class="cell"></div>
+            </td>
+        </tr>
+		</table>
+		
+		
+	    <table border="0px" width="100%">
+        <tr>	
+		<br>
+            <td>
+			<div type="label" class="cell">Gleich :</div>
+			</td>
+					
+            <td>
+                <div type="label" device="Klack" data-get="ZDF_next" style="color:#aa6900;"></div>
+            </td>
+			
+			<td>
+                <div type="label" device="Klack" data-get="ZDF_next_time"></div>
+			</td>
+			
+			<td>
+                <div></div>
+			</td>		
+			
+</tr>
+<tr>
+		
+            <td>
+			<div type="label" class="cell">20:15</div>
+			</td>
+					
+            <td>
+                <div type="label" device="Klack2015" data-get="ZDF" style="color:#aa6900;"></div>
+            </td>
+			
+			<td>
+                <div type="label" device="Klack2015" data-get="ZDF_time"></div>
+			</td>
+			
+			<td>
+                <div type="label" device="Klack2015" data-get="ZDF_next_time"></div>
+			</td>		
+			
+</tr>
+<tr>
+		
+            <td>
+			<div type="label" device="Klack2015" data-get="ZDF_next_time"></div>
+			</td>
+					
+            <td>
+                <div type="label" device="Klack2015" data-get="ZDF_next" style="color:#aa6900;"></div>
+            </td>
+			
+			<td>
+                <div type="label" device="Klack2015" data-get="ZDF_next_time"></div>
+			</td>
+			
+			<td>
+                <div></div>
+			</td>		
+			
+        </tr>		
+		</table>		
+
+</li>
+
+
+</li>
+</li>
+</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+	 * Version: 1.3.3
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<title>Home-Control</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+	<meta name="widget_base_width" content="115">
+	<meta name="widget_base_height" content="120">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name='gridster_disable' content='0'>
+	<meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+	<meta name="debug" content="1"> <!-- 1=output to console;0=not output -->
+	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+	
+	
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+	<script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+  <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+  <script type="text/javascript" src="/fhem/tablet/js/dygraph-combined.js"></script>
+  
+  <script type="text/javascript" src="/fhem/tablet/js/widget_clock.js"></script>
+
+
+</head>
+<body>
+
+<!-- available class: container,left,right,cell,narrow,darker,big,small -->
+<!-- available data-type: contact,dimmer,homestatus,label,push,slider,switch,thermostat,volume -->
+
+
+<div class="gridster">
+<ul>
+<!-- Linkes Hauptmenü ########################################################################-->
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+	<header>Haupt</header>
+  <div class="cell">
+	  <div style="font-size:30px; color:rgb(96, 0, 0);" data-type="button" data-color="#505050" data-url="tab-main.html" data-icon="fa-info" class="cell small" ></div>
+    <div data-type="label" class="cell small">R&auml;ume</div>
+  </div> 
+  <div class="cell">
+	  <div style="font-size:30px;" data-type="button" data-color="#505050" data-url="wetter.html" data-icon="fa-soundcloud" class="cell" ></div>
+	  <div data-type="label" class="cell small">Wetter</div>
+  </div>
+    <div class="cell">
+	  <div style="font-size:30px;" data-type="button" data-color="#aa6900" data-url="charts.html" data-icon="fa-bar-chart" class="cell" ></div>
+	  <div data-type="label" class="cell small">Charts</div>
+    <div style="font-size:30px;" data-type="button" data-color="#505050" data-url="energie.html" data-icon="fa-flash" class="cell" ></div>
+	  <div data-type="label" class="cell small">Energieverbrauch</div>
+    <div style="font-size:30px;" data-type="button" data-color="#505050" data-url="webcam.html" data-icon="fa-video-camera" class="cell" ></div>
+	  <div data-type="label" class="cell small">Web-Cam</div>
+   </div>
+</li>
+ <!-- Linkes Hauptmenü ########################################################################-->
+<li data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+	<header>Uhrzeit</header>
+  <div class="cell"> 
+  <div style="padding-top:15px;font-size:18px;color:rgb(170,105,0);text-shadow: 0px 0px 3px rgb(42,42,42)" data-type="clock" data-format="d-m-Y"></div>
+  <div style="padding-top:15px;font-size:18px;color:rgb(170,105,0);text-shadow: 0px 0px 3px rgb(42,42,42)" data-type="clock" data-format="H:i:s"></div>
+</div>
+</li>
+
+<li data-row="1" data-col="2" data-sizex="6" data-sizey="4">
+ 	<header>KS300 Daten</header>
+ 	<div class="cell">
+    <div data-type="label"  class="cell darker" >Aktueller Z&auml;hlerstand</div>
+    <div data-type="label" data-device="Stromzaehler" data-get="raw_total" class="cell big" ></div><br> 
+    <iframe src="http://192.168.2.2:8083/fhem/SVG_showLog?dev=SVG_FileLog_Stromzaehler_1&logdev=FileLog_Stromzaehler&gplotfile=SVG_FileLog_Stromzaehler_1&logfile=CURRENT&pos=" width='680' height='160' scrolling='yes' allowtransparency='true' frameborder='0'></iframe>
+    <iframe src="http://192.168.2.2:8083/fhem/SVG_showLog?dev=SVG_FileLog_Stromzaehler_day_1&logdev=FileLog_Stromzaehler_day&gplotfile=SVG_FileLog_Stromzaehler_day_1&logfile=CURRENT&pos=" width='680' height='160' scrolling='yes' allowtransparency='true' frameborder='0'></iframe>
+  </div>
+</li>
+
+<li data-row="5" data-col="2" data-sizex="1" data-sizey="1">
+	<header>Heizung</header>
+	  <div data-type="switch" data-device="Heizung" data-icon="fa-fire" class="cell" ></div>
+	  <div data-type="label" class="cell small">Heizung</div>
+ </li>
+<li data-row="5" data-col="3" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="Nachtischlampe"   class="cell"></div>
+	  <div data-type="label" class="cell small">Nachtischlampe</div>
+</li>
+<li data-row="5" data-col="4" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="TV-Strom"   class="cell"></div>
+	  <div data-type="label" class="cell small">TV-Stromleiste</div>
+</li>
+<li data-row="5" data-col="5" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="wc_licht"   class="cell"></div>
+	  <div data-type="label" class="cell small">WC-Licht</div>
+</li>
+<li data-row="5" data-col="6" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="Kugelleuchte_1"   class="cell"></div>
+	  <div data-type="label" class="cell small">Kugelleuchte</div>
+</li>
+
+<li data-row="5" data-col="7" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="Aussenlicht2"   class="cell"></div>
+	  <div data-type="label" class="cell small">Aussenlicht</div>
+</li>
+<!-- Rechtes Global Menü ########################################################################-->
+<li data-row="1" data-col="8" data-sizex="1" data-sizey="4">
+ 	<header>Global</header>
+   <div data-type="button" data-color="#505050" data-url="charts.html" data-icon="fa-area-chart" class="cell small" ></div>
+   <div data-type="label" class="small">Klima</div>
+   <div data-type="button" data-color="#505050" data-url="heizung.html"  data-icon="fa-align-justify" class="fa-rotate-90"></div>
+   <div data-type="label" class="small">Heizung 1</div>
+   <div data-type="button" data-color="#505050" data-url="heizung2.html" data-icon="fa-align-justify" class="fa-rotate-90"></div>
+   <div data-type="label" class="small">Heizung 2</div>
+   <div data-type="button" data-color="#505050" data-url="pumpen.html" data-icon="fa-steam"></div>
+	 <div data-type="label" class="cell small">Pumpen</div>
+   <div data-type="button" data-color="#aa6900" data-url="energie.html" data-icon=" fa-line-chart"></div>
+	 <div data-type="label" class="cell small">Energieverbrauch</div>
+   <div data-type="button" data-color="#505050" data-url="hardware.html" data-icon="fa-server"></div>
+	 <div data-type="label" class="cell small">Hardware</div> 
+   <div data-type="button" data-color="#505050" data-url="hardware.html" data-icon="fa-circle"></div>
+	 <div data-type="label" class="cell small">Frei</div> 
+</li> 
+<!-- Rechtes Global Menü Ende ####################################################################-->
+
+<li data-row="5" data-col="8" data-sizex="1" data-sizey="1">
+	<header>Licht</header>
+	  <div data-type="switch" data-device="Vorgarten"   class="cell"></div>
+	  <div data-type="label" class="cell small">Vorgarten</div>
+</li>
+</ul>
+</div> 
+<!-- <div data-type="symbol" 
+    data-device="Kugelleuchte_1" 
+    data-get="STATE"
+    data-get-on="on"
+    data-get-off="off"
+    data-icon="fa-exclamation-triangle"
+    data-background-icon="fa-circle"
+    data-on-color="#ffffff"
+    data-on-background-color="#ff0000"
+    data-off-color="rgba(0,0,0,0)"
+    data-off-background-color="rgba(0,0,0,0)"
+    style="font-size:50px;top:20px;left:150px;position:absolute;z-index:9999;pointer-events:none;">
+</div> -->
+</body>
+</html>
