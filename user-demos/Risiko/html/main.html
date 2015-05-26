@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<div class="gridster">
+	<ul>
+		<li data-row="1" data-col="1" data-sizex="1" data-sizey="6" data-template="menu.html"></li>
+		<!-- Bahn -->
+		<li data-row="1" data-col="2" data-sizex="2" data-sizey="2">
+				<header><font size="+1">A &#10145; B</font></header>
+				<table class="calls" width="100%">
+					<tr>
+						<td><div data-type="label" class="thin">Abfahrt</div></td>
+						<td><div data-type="label" class="thin">Delay</div></td>
+						<td colspan="2">Art</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-type="label" class="inline large thin"
+									 data-device="db" data-get="departure_1">
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-fix="0" data-limits='[0,1]' data-colors='["#00FF00","#FF0000"]'
+									 data-device="db" data-get="departure_delay_1">
+							</div>
+						</td>
+						<td>
+							<div data-type="symbol"class="inline small"
+									 data-device="db" data-get="connection_1"
+									 data-get-on='["EB","STB","RB","BUS"]'
+									 data-icons='["fa-train","fa-train","fa-train","fa-bus"]'
+									 data-on-colors='["#B28F00","#B28F00","#B28F00","#AF7E5F"]'>
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-device="db" data-get="connection_1">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-type="label" class="inline large thin"
+									 data-device="db" data-get="departure_2">
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-fix="0" data-limits='[0,1]' data-colors='["#00FF00","#FF0000"]'
+									 data-device="db" data-get="departure_delay_2">
+							</div>
+						</td>
+						<td>
+							<div data-type="symbol"class="inline small"
+									 data-device="db" data-get="connection_2"
+									 data-get-on='["EB","STB","RB","BUS"]'
+									 data-icons='["fa-train","fa-train","fa-train","fa-bus"]'
+									 data-on-colors='["#B28F00","#B28F00","#B28F00","#AF7E5F"]'>
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-device="db" data-get="connection_2">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-type="label" class="inline large thin"
+									 data-device="db" data-get="departure_3">
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-fix="0" data-limits='[0,1]' data-colors='["#00FF00","#FF0000"]'
+									 data-device="db" data-get="departure_delay_3">
+							</div>
+						</td>
+						<td>
+							<div data-type="symbol"class="small"
+									 data-device="db" data-get="connection_3"
+									 data-get-on='["EB","STB","RB","BUS"]'
+									 data-icons='["fa-train","fa-train","fa-train","fa-bus"]'
+									 data-on-colors='["#B28F00","#B28F00","#B28F00","#AF7E5F"]'>
+							</div>
+						</td>
+						<td>
+							<div data-type="label"class="inline large thin"
+									 data-device="db" data-get="connection_3">
+							</div>
+						</td>
+					</tr>
+				</table>
+		</li>
+		<!-- Müll -->
+		<li data-row="3" data-col="2" data-sizex="2" data-sizey="3">
+			<header><font size="+1">Abfall</font></header>
+			<table class="calls" width="100%">
+				<tr>
+					<td>Wass</td>
+					<td>Wann</td>
+				</tr>
+				<tr>
+						<td><div data-type="label" class="large thin">Biomüll</div></td>
+						<td>
+							<div data-type="symbol"class="bigger warn"
+									 data-device="waste_bio" data-get="state"
+									 data-get-on="(\d+)"
+									 data-on-color="#996600"
+									 data-icon='fa-trash-o'>
+							</div>
+						</td>
+				</tr>
+				<tr>
+						<td><div data-type="label" class="large thin">Hausmüll</div></td>
+						<td>
+							<div data-type="symbol"class="bigger warn"
+									 data-device="waste_house" data-get="state"
+									 data-get-on="(\d+)"
+									 data-on-color="#0E0E0E"
+									 data-icon='fa-trash-o'>
+							</div>
+						</td>
+				</tr>
+				<tr>
+						<td><div data-type="label" class="inline large thin">Papiermüll</div></td>
+						<td>
+							<div data-type="symbol"class="bigger warn"
+									 data-device="waste_paper" data-get="state"
+									 data-get-on="(\d+)"
+									 data-on-color="#4040D5"
+									 data-icon='fa-trash-o'>
+							</div>
+						</td>
+				</tr>
+				<tr>
+						<td><div data-type="label" class="inline large thin">Plastikmüll</div></td>
+						<td>
+							<div data-type="symbol"class="bigger warn"
+									 data-device="waste_plastic" data-get="state"
+									 data-get-on="(\d+)"
+									 data-on-color="#E6E600"
+									 data-icon='fa-trash-o'>
+							</div>
+						</td>
+				</tr>
+			</table>
+		</li>
+		<!-- Medianserver -->
+		<li data-row="6" data-col="2" data-sizex="2" data-sizey="1">
+			<header><font size="+1">Medienserver</font></header>
+			<div data-type="switch" data-device="WOL_MEDIA_SRV" data-icon="oa-it_pc" class="cell"></div>
+			<div data-type="label" data-device="WOL_MEDIA_SRV" class="narow"></div>
+		</li>
+		<!-- Außemtemperatur -->
+		<li data-row="1" data-col="4" data-sizex="2" data-sizey="1">
+			<header><font size="+1">Außemtemperatur</font></header>
+			<div class="cell">
+				<table>
+					<tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<td><div class="inline" data-type="label">Eingang</div></td>
+						<td><div class="large" data-type="label" data-colors='["#B28F00"]' data-limits='["0"]'
+										data-device="PI_TEMP_Eingang" data-get="temperature"
+										data-unit="%B0C%0A" ></div>
+						</td>
+						<td>&nbsp;</td>
+						<td><div class="inline" data-type="label">Garten</div></td>
+						<td>
+								<div class="large" data-type="label" data-colors='["#B28F00"]' data-limits='["0"]'
+										data-device="PI_TEMP_Garten" data-get="temperature" data-unit="%B0C%0A" ></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</li>
+		<!-- Wetter -->		
+		<li data-row="2" data-col="4" data-sizex="2" data-sizey="5">
+			<header><font size="+1">Wetter&nbsp;</font>(Heute)</header>
+			<div class="cell">
+				<table>
+					<tr>
+						<td align="center" width="40px"><div data-type="label">Min:</div> </td>
+						<td align="center"><div data-type="label" data-device="proplanta" data-get="fc0_tempMin" data-unit="%B0C%0A" class="large" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						<td>&nbsp;</td>
+						<td width="150px">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="center"><div data-type="label">Akt:</div> </td>
+						<td align="center"><div data-type="label" data-device="proplanta" data-get="temperature" data-unit="%B0C%0A" class="large" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						<td width="37%">&nbsp;</td>
+						<td align="left"><div data-type="weather" data-icon="R" class="small"></div></td>
+						<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRainDay" data-unit="%" class="large" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+					</tr>
+					<tr>
+						<td align="center"><div data-type="label">Max:</div> </td>
+						<td align="center"><div data-type="label" data-device="proplanta" data-get="fc0_tempMax" data-unit="%B0C%0A" class="large" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						<td>&nbsp;</td>
+						<td align="left"><div data-type="weather" data-icon="B" class="small"></div></td>
+						<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_sun" data-unit="%" class="large" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+					</tr>
+				</table>
+			</div>
+			<header class="top-space"><font color="white">Früh</font></header>
+			<div class="cell">
+				<table>
+				<tr>
+					<td width="20px">&nbsp;</td>
+					<td>
+						<div data-type="weather" data-device="proplanta" data-get="fc0_weatherMorningIcon" data-imageset="kleinklima" class="cell" style="width:100px"></div>
+						<div data-type="label" data-device="proplanta" data-get="fc0_weatherMorning" class="cell small narrow"></div>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td align="left" width="40px"><div data-type="weather" data-icon="Y" class="small"></div></td>
+							<td align="left" valign="bottom"><div data-type="label" data-device="proplanta" data-get="fc0_cloud06" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						</tr>
+						<tr>
+							<td align="left" width="40px"><div data-type="weather" data-icon="'" class="small"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp06" data-unit="%B0C%0A" class="left big" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						</tr>
+						<tr>
+							<td align="left" width="40px"><div data-type="weather" data-icon="R" class="small"></div></td>
+							<td align="left" valign="top"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain06" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<header class="top-space"><font color="white">Mittag</font></header>
+			<div class="cell">
+				<table>
+					<tr>
+						<td width="20px">&nbsp;</td>
+						<td>
+							<div data-type="weather" data-device="proplanta" data-get="fc0_weatherDayIcon" data-imageset="kleinklima" class="cell" style="width:100px"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc0_weatherDay" class="cell small narrow"></div>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td align="left" width="40px"><div data-type="weather" data-icon="Y" class="small"></div></td>
+									<td align="left" valign="bottom"><div data-type="label" data-device="proplanta" data-get="fc0_cloud12" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+								</tr>
+								<tr>
+									<td align="left" width="40px"><div data-type="weather" data-icon="'" class="small"></div></td>
+									<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp12" data-unit="%B0C%0A" class="left big" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+								</tr>
+								<tr>
+									<td align="left" width="40px"><div data-type="weather" data-icon="R" class="small"></div></td>
+									<td align="left" valign="top"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain12" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<header class="top-space"><font color="white">Abend</font></header>
+			<div class="cell">
+				<table>
+				<tr>
+					<td width="20px">&nbsp;</td>
+					<td>
+						<div data-type="weather" data-device="proplanta" data-get="fc0_weatherEveningIcon" data-imageset="kleinklima" class="cell" style="width:100px"></div>
+						<div data-type="label" data-device="proplanta" data-get="fc0_weatherEvening" class="cell small narrow"></div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="Y" class="small"></div></td>
+								<td align="left" valign="bottom"><div data-type="label" data-device="proplanta" data-get="fc0_cloud18" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="'" class="small"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp18" data-unit="%B0C%0A" class="left big" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="R" class="small"></div></td>
+								<td align="left" valign="top"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain18" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<header class="top-space"><font color="white">Nacht</font></header>
+			<div class="cell">
+				<table>
+				<tr>
+					<td width="20px">&nbsp;</td>
+					<td>
+						<div data-type="weather" data-device="proplanta" data-get="fc0_weatherNightIcon" data-imageset="kleinklima" class="cell" style="width:100px"></div>
+						<div data-type="label" data-device="proplanta" data-get="fc0_weatherNight" class="cell small narrow"></div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="Y" class="small"></div></td>
+								<td align="left" valign="bottom"><div data-type="label" data-device="proplanta" data-get="fc0_cloud21" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="'" class="small"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp21" data-unit="%B0C%0A" class="left big" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+							<tr>
+								<td align="left" width="40px"><div data-type="weather" data-icon="R" class="small"></div></td>
+								<td align="left" valign="top"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRainNight" data-unit="%" class="left" data-colors='["#B28F00"]' data-limits='["0"]'></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</div>
+		</li>
+		<!-- Licht -->
+		<li data-row="1" data-col="6" data-sizex="2" data-sizey="1">
+			<header><font size="+1">Licht</font></header>
+			<div class="cell">
+				<table width="100%">
+					<tr>
+						<td>
+							<div data-type="label" class="narow">Stube</div>
+							<div data-type="dimmer" data-device="WZ_Dimmer" class="cell"
+									data-get="state" data-get-on="on" data-get-off="off" data-set-off="off"
+									data-set-on="on" data-set=""  data-dim="dimlevel">
+						</td>
+						<td>
+							<div data-type="label" class="narow">Büro</div>
+							<div data-type="switch" data-device="BR_SWITCH" class="cell">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</li>
+		<!-- Heizung -->
+		<li data-row="2" data-col="6" data-sizex="2" data-sizey="5">
+			<header><font size="+1">Heizung</font></header>
+			<div class="cell">
+				<table>
+					<tr><td colspan="2"><div data-type="label" class="class">Stube</div></td></tr>
+					<tr>
+						<td>
+							<div data-type="thermostat" data-get="desiredTemperature" data-set="desiredTemperature direct" data-temp="temperature"
+									data-off="off" data-boost="boost" data-min="5" data-max="30" data-device="FAKE_WZ_WT" class="cell"
+									data-fgColor="#B28F00"> </div>
+						</td>
+						<td>
+							<div class="container left">
+								<div class="large" data-type="label" data-get="temperature" data-device="FAKE_WZ_WT" data-fix="1"
+										data-unit="%B0C%0A" data-colors='["#B28F00"]' data-limits='["0"]'></div>
+								<div 	class="bigger" data-type="multistatebutton" data-device="FAKE_WZ_WT" data-get="mode"
+											data-background-icon="gs-w"
+											data-get-on='["auto","manuell"]' data-icons='["oa-sani_heating_automatic","oa-sani_heating_manual"]'
+											data-set='["mode direct manuell","mode direct auto"]'
+											data-colors='["#00FF00","#FF0000"]'></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="cell top-space">
+				<table>
+					<tr><td colspan="2"><div data-type="label" class="class">Flur</div></td></tr>
+					<tr>
+						<td>
+							<div data-type="thermostat" data-get="desiredTemperature" data-set="desiredTemperature direct" data-temp="temperature"
+									data-off="off" data-boost="boost" data-min="5" data-max="30" data-device="FAKE_FLUR_WT" class="cell"
+									data-fgColor="#B28F00"> </div>
+						</td>
+						<td>
+							<div class="container left">
+								<div class="large" data-type="label" data-get="temperature" data-device="FAKE_FLUR_WT" data-fix="1"
+										data-unit="%B0C%0A" data-colors='["#B28F00"]' data-limits='["0"]'></div>
+								<div 	class="bigger" data-type="multistatebutton" data-device="FAKE_FLUR_WT" data-get="mode"
+											data-background-icon="gs-w"
+											data-get-on='["auto","manuell"]' data-icons='["oa-sani_heating_automatic","oa-sani_heating_manual"]'
+											data-set='["mode direct manuell","mode direct auto"]'
+											data-colors='["#00FF00","#FF0000"]'></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="cell top-space">
+				<table>
+					<tr><td colspan="2"><div data-type="label" class="class">Bad</div></td></tr>
+					<tr>
+						<td>
+							<div data-type="thermostat" data-get="desiredTemperature" data-set="desiredTemperature direct" data-temp="temperature"
+									data-off="off" data-boost="boost" data-min="5" data-max="30" data-device="FAKE_BAD_WT" class="cell"
+									data-fgColor="#B28F00"> </div>
+						</td>
+						<td>
+							<div class="container left">
+								<div class="large" data-type="label" data-get="temperature" data-device="FAKE_BAD_WT" data-fix="1"
+										data-unit="%B0C%0A" data-colors='["#B28F00"]' data-limits='["0"]'></div>
+								<div 	class="bigger" data-type="multistatebutton" data-device="FAKE_BAD_WT" data-get="mode"
+											data-background-icon="gs-w"
+											data-get-on='["auto","manuell"]' data-icons='["oa-sani_heating_automatic","oa-sani_heating_manual"]'
+											data-set='["mode direct manuell","mode direct auto"]'
+											data-colors='["#00FF00","#FF0000"]'></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</li>
+		<li data-row="1" data-col="8" data-sizex="3" data-sizey="3">
+			<header><font size="+1">Termine</font></header>
+			<div class="cell">
+				<table class="calls" width="100%">
+					<tr>
+						<td><div data-type="label" class="thin">Begin</div></td>
+						<td><div data-type="label" class="thin">Ende</div></td>
+						<td><div data-type="label" class="thin">Was</div></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_001_bdate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_001_btime"></div>
+							</div>
+						</td>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_001_edate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_001_etime"></div>
+							</div>
+						</td>
+						<td><div data-type="label" class="large thin" data-device="cal_view" data-get="t_001_summary"
+										data-colors='["#B28F00","#00FF00"]' data-limits='[".*Geburtstag.*",".*"]'
+										data-substitution="s/von/<br>/g"></div></td>
+					</tr>
+					<!-- 2 -->
+					<tr>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_002_bdate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_002_btime"></div>
+							</div>
+						</td>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_002_edate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_002_etime"></div>
+							</div>
+						</td>
+						<td><div data-type="label" class="large thin" data-device="cal_view" data-get="t_002_summary"
+										data-colors='["#B28F00","#00FF00"]' data-limits='[".*Geburtstag.*",".*"]'
+										data-substitution="s/von/<br>/g"></div></td>
+					</tr>
+					<!-- 3 -->
+					<tr>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_003_bdate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_003_btime"></div>
+							</div>
+						</td>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_003_edate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_003_etime"></div>
+							</div>
+						</td>
+						<td><div data-type="label" class="large thin" data-device="cal_view" data-get="t_003_summary"
+										data-colors='["#B28F00","#00FF00"]' data-limits='[".*Geburtstag.*",".*"]'
+										data-substitution="s/von/<br>/g"></div></td>
+					</tr>
+					<!-- 4 -->
+					<tr>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_004_bdate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_004_btime"></div>
+							</div>
+						</td>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_004_edate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_004_etime"></div>
+							</div>
+						</td>
+						<td><div data-type="label" class="large thin" data-device="cal_view" data-get="t_004_summary"
+										data-colors='["#B28F00","#00FF00"]' data-limits='[".*Geburtstag.*",".*"]'
+										data-substitution="s/von/<br>/g"></div></td>
+					</tr>
+					<!-- 5 -->
+					<tr>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_005_bdate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_005_btime"></div>
+							</div>
+						</td>
+						<td>
+							<div class="cell">
+								<div data-type="label" class="large thin"
+												data-device="cal_view" data-get="t_005_edate"
+												data-substitution="s/\.20[0-9]{2}//g"></div>
+								<div data-type="label" class="thin" data-device="cal_view"
+											data-substitution="s/(00:00:00)|(:00)$//g" data-get="t_005_etime"></div>
+							</div>
+						</td>
+						<td><div data-type="label" class="large thin" data-device="cal_view" data-get="t_005_summary"
+										data-colors='["#B28F00","#00FF00"]' data-limits='[".*Geburtstag.*",".*"]'
+										data-substitution="s/von/<br>/g"></div></td>
+					</tr>
+				</table>
+			</div>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

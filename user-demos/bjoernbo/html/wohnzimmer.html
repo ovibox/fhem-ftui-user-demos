@@ -1,0 +1,398 @@
+<html>
+<title>FHEM</title>
+<head>
+	
+<!-- 
+     /* FHEM tablet ui */
+     /*
+     * Just another dashboard for FHEM
+     *
+     * Version: 1.3.0
+     * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+     * URL: https://github.com/knowthelist/fhem-tablet-ui
+     *
+     * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+     *
+     * - create a new folder named 'tablet' in /<fhem-path>/www
+     * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+     * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+     * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+     */
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="116">
+    <meta name="widget_base_height" content="131">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+    
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+    <link rel="stylesheet" href="/fhem/www/tablet/customfonts/font1/style.css">
+
+    <script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+    
+    <!-- Enable this lines for usage with WebViewControl -->
+    <script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+    <script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+    <script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+    <!-- End for WebViewControl -->
+
+<!--  F O S C A M  S T E U E R U N G -->
+    <script type="text/javascript">
+
+   //******* Edit This *******
+        var chrUser = 'xxxxx' //User name
+        var chrPassword = 'xxxxx' //Password
+        var chrURL = '192.168.178.132:5200' // do not include "http://" in this line
+    //****** End of User Editing ******
+function doCam1(arg, chrType) {   
+            if(document.getElementById('ifrResult1')){
+                if(chrType == 1){       chrCGI = 'decoder_control'
+                
+                }else if(chrType == 3){ chrCGI = 'snapshot'
+                }else if(chrType == 4){ chrCGI = 'set_alarm'
+                }else if(chrType == 9){ chrCGI = 'reboot'
+                }else{                  chrCGI = 'camera_control'
+                }
+             document.getElementById('ifrResult1').src='http://'+chrURL+'/'+chrCGI+'.cgi?user='+chrUser+'&amp;pwd='+chrPassword+'&amp;'+arg;
+            }
+        }
+    </script>   
+
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+	<header>RÄUME</header>
+    <style>
+    #room_wohnzimmer #bg {
+        color: rgb(130,179,25) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+
+<div data-type="circlemenu"  class="cell circlemenu" data-direction="top-right"  data-circle-radius="60">
+    <ul>
+      <li><div data-type="symbol" 
+               data-icon="font1-tv" 
+               data-on-background-color="rgb(111,69,120)" 
+               data-off-background-color="rgb(111,69,120)"
+               data-on-color="rgb(255,255,255)" 
+               data-off-color="rgb(255,255,255)" 
+               data-background-icon="fa-circle">
+           </div>
+       </li>    
+        <li><div data-type="button" 
+             data-on-background-color="rgb(153,204,0)"
+             data-on-color="white"
+             data-icon="font1-kodi"
+             data-url="kodi.html">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(255,51,51)"
+               data-icon="fa-calculator"
+               data-on-color="white"
+               data-url="rc.html">
+         </div></li>
+    </ul>    
+</div>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wetter" href="wetter.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-umbrella" style="color: rgb(255,255,255);"></i>
+    </a>
+</div>
+</li>
+<li data-row="1" data-col="10" data-sizex="1" data-sizey="4">
+    <header>ÜBERSICHTEN</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(249,252,156) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a> 
+<a id="room_statistik" href="statistik.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bar-chart" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+</li>
+<li data-row="1" data-col="7" data-sizex="1" data-sizey="1">
+	<header>FENSTER</header>
+        <div class="container">
+         <div class="left">
+         </div>
+        <div class="center">
+       <div type="label" class="cell">&nbsp;</div>
+       <div type="contact" device="Fensterkontakt.Wohnzimmer" data-get="state" class="cell"></div>
+</div>
+</li>
+<li data-row="1" data-col="5" data-sizex="2" data-sizey="1">
+        <header>HEIZUNG</header>
+<div type="thermostat" device="Wohnzimmer.Wandthermostat" data-get="desired-temp" data-temp="measured-temp"
+        class="cell center">
+        <div type="label" device="Wohnzimmer.Wandthermostat" data-get="humidity" data-unit=" %" class="cell small">
+        </div>
+</li>
+
+<li data-row="1" data-col="8" data-sizex="1" data-sizey="1">
+        <header>TV</header>
+        <div class="container">
+        <div type="label" class="cell">&nbsp;</div>
+        <div type="switch" device="TV_Modus" data-icon="font1-tv" class="cell" ></div>
+        </div>
+</li>
+<li data-row="1" data-col="9" data-sizex="1" data-sizey="1">
+        <header>KODI</header>
+       <div class="container">
+       <div type="label" class="cell">&nbsp;</div>
+ <div type="switch" device="XBMC_Modus" data-icon="font1-kodi" class="cell" ></div>
+         </div>
+</li>
+
+<li data-row="4" data-col="9" data-sizex="1" data-sizey="1"> <!-- 928*655 -->
+    <header>Fernsehprogramm</header>
+    <div><br>
+    <a id="room_epg" href="epg.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-newspaper-o" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+</li>
+
+
+<li data-row="1" data-col="2" data-sizex="1" data-sizey="4">
+	<header>Sideboard</header>
+        <div class="container">
+        <div type="switch" device="LED_Sideboard" class="cell"></div>
+        <div type="label" class="cell">&nbsp;</div>
+        <div type="push" device="LED_Sideboard" class="cell" data-set="on-for-timer 300"></div>
+        <div type="label" class="cell">5 Minuten</div>
+        <div type="push" device="LED_Sideboard" class="cell" data-set="on-for-timer 900"></div>
+        <div type="label" class="cell">15 Minuten</div>
+        <div type="push" device="LED_Sideboard" class="cell" data-set="on-for-timer 1800"></div>
+        <div type="label" class="cell">30 Minuten</div>
+        <div type="push" device="LED_Sideboard" class="cell" data-set="on-for-timer 3600"></div>
+        <div type="label" class="cell">1 Stunde</div>
+        <div type="push" device="LED_Sideboard" class="cell" data-set="on-for-timer 7200"></div>
+        <div type="label" class="cell">2 Stunden</div>
+        </div>
+</li>
+
+<li data-row="1" data-col="3" data-sizex="1" data-sizey="4">
+        <header>Stehlampe</header>
+        <div class="container">
+        <div type="switch" device="Stehlampe" class="cell"></div>
+        <div type="label" class="cell">&nbsp;</div>
+        <div type="push" device="Stehlampe" class="cell" data-set="on-for-timer 300"></div>
+        <div type="label" class="cell">5 Minuten</div>
+        <div type="push" device="Stehlampe" class="cell" data-set="on-for-timer 900"></div>
+        <div type="label" class="cell">15 Minuten</div>
+        <div type="push" device="Stehlampe" class="cell" data-set="on-for-timer 1800"></div>
+        <div type="label" class="cell">30 Minuten</div>
+        <div type="push" device="Stehlampe" class="cell" data-set="on-for-timer 3600"></div>
+        <div type="label" class="cell">1 Stunde</div>
+        <div type="push" device="Stehlampe" class="cell" data-set="on-for-timer 7200"></div>
+        <div type="label" class="cell">2 Stunden</div>
+        </div>
+</li>
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="4">
+        <header>Dimmer</header>
+        <div class="container">
+        <div data-type="switch" data-device="WZ_Dimmer" class="cell"></div>
+        <div data-type="label" class="cell">&nbsp;</div>
+        <div data-type="push" data-device="WZ_Dimmer" class="cell" data-set="on-for-timer 300"></div>
+        <div data-type="label" class="cell">5 Minuten</div>
+        <div data-type="push" data-device="WZ_Dimmer" class="cell" data-set="on-for-timer 900"></div>
+        <div data-type="label" class="cell">15 Minuten</div>
+        <div data-type="push" data-device="WZ_Dimmer" class="cell" data-set="on-for-timer 1800"></div>
+        <div data-type="label" class="cell">30 Minuten</div>
+        <div data-type="push" data-device="WZ_Dimmer" class="cell" data-set="on-for-timer 3600"></div>
+        <div data-type="label" class="cell">1 Stunde</div>
+        <div data-type="push" data-device="WZ_Dimmer" class="cell" data-set="on-for-timer 7200"></div>
+        <div data-type="label" class="cell">2 Stunden</div>
+        </div>
+</li>
+<li data-row="3" data-col="9" data-sizex="1" data-sizey="2">
+        <header>Qualität</header>
+        <div class="container">
+        <div class="center">
+        <div type="label" class="cell">CO2 Belastung</div>
+        <div type="label" device="netatmo_D70:ee:50:00:28:82" data-get="co2" data-fix="0" data-unit=" mg" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Luftfeuchte</div>
+        <div type="label" device="Wohnzimmer.Wandthermostat" data-get="humidity" data-fix="0" data-unit="%" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Lärm</div>
+        <div type="label" device="netatmo_D70:ee:50:00:28:82" data-get="noise" data-fix="0" data-unit=" dB" class="cell big"></div> 
+        </div>
+        </div>
+</li>
+<!-- Senderlogos:
+    http://www.kodinerds.net/index.php/Thread/27408-RELEASE-Deutsche-Senderlogos-optimiert-für-den-Xperience1080-Skin/?pageNo=2
+-->
+
+<li data-row="5" data-col="2" data-sizex="1" data-sizey="1">
+<header>1</header>
+   <img src="img/senderlogos/Das-Erste-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number1')"></img>
+</li>
+
+<li data-row="5" data-col="3" data-sizex="1" data-sizey="1">
+   <header>2</header>
+    <img src="img/senderlogos/ZDF-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number2')"></img>
+</li>
+<li data-row="5" data-col="4" data-sizex="1" data-sizey="1">
+ <header>3</header>
+  <img src="img/senderlogos/WDR-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number3')"></img>
+</li>
+<li data-row="5" data-col="5" data-sizex="1" data-sizey="1">
+   <header>4</header>
+   <img src="img/senderlogos/RTL-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number4')"></img>
+</li>
+<li data-row="5" data-col="6" data-sizex="1" data-sizey="1">
+<header>5</header>
+    <img src="img/senderlogos/Sat.1-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number5')"></img>
+
+   
+</li>
+<li data-row="5" data-col="7" data-sizex="1" data-sizey="1">
+  <header>6</header>
+    <img src="img/senderlogos/VOX-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number6')"></img>
+</li>
+<li data-row="5" data-col="8" data-sizex="1" data-sizey="1">
+  <header>7</header>
+   <img src="img/senderlogos/Pro7-HD.png" height="80" wight="80" class="top-space" onclick="setFhemStatus('set hub command 24775848 Number7')"></img>
+</li>
+<li data-row="5" data-col="8" data-sizex="1" data-sizey="1">
+
+<li data-row="5" data-col="9" data-sizex="1" data-sizey="1">
+<div class="container">
+    <header>TV Optionen</header><br>
+<div data-type="circlemenu"  class="cell circlemenu top-space" data-direction="top"  data-circle-radius="75">
+    <ul>
+      <li><div data-type="symbol" 
+               data-icon="font1-tv" 
+               data-on-background-color="rgb(111,69,120)" 
+               data-off-background-color="rgb(111,69,120)"
+               data-on-color="rgb(255,255,255)" 
+               data-off-color="rgb(255,255,255)" 
+               data-background-icon="fa-circle">
+           </div>
+       </li>    
+        <li><div data-type="button" 
+             data-on-background-color="rgb(153,204,0)"
+             data-on-color="white"
+             data-icon="fa-volume-off"
+             data-fhem-cmd="set hub command 15781875 Mute">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(71,163,117)"
+               data-icon="fa-cube"
+               data-on-color="white"
+               data-fhem-cmd="set hub command lg-fernseher 3D">
+         </div></li>
+         
+      <li><div data-type="button"
+               data-on-background-color="rgb(255,51,51)"
+               data-url="rc.html"
+               data-icon="fa-calculator"
+               data-on-color="white">
+         </div></li>
+        
+    </ul>    
+</div>
+</li>
+<li data-row="5" data-col="10" data-sizex="1" data-sizey="1">
+</li>
+<li data-row="3" data-col="5" data-sizex="4" data-sizey="3"> <!-- 928*655 -->
+    <header>KAMERA</header>
+    <div class="container"> 
+        <div class="center">
+            <div class="cell">&nbsp;</div>
+                <div type="label" class="cell"><img src="http://192.168.178.132:5200/videostream.cgi?user=xxxxx&pwd=xxxxxx" height="320" wight="350" border="0">
+                </img src></div>
+          </div>
+              <div data-type="circlemenu" class="cell circlemenu">
+             
+                    <ul class="menu keepopen">                  
+                        <li><div data-type="push" onclick="doCam1('command=1',1)" data-icon="fa-stop"></div></li>
+                        <li><div data-type="push" onclick="doCam1('command=0',1)" data-icon="fa-arrow-up"></div></li>
+                        <li><div data-type="push" onclick="doCam1('command=4',1)" data-icon="fa-arrow-right"></div></li>
+                        <li><div data-type="push" onclick="doCam1('command=2',1)" data-icon="fa-arrow-down"></div></li>
+                        <li><div data-type="push" onclick="doCam1('command=6',1)" data-icon="fa-arrow-left"></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <iframe  id="ifrResult1" name="ifrResult1" style="border:1pt;width:1px;height:1px;"></iframe>
+            <iframe  id="ifrResult" name="ifrResult" style="border:1pt;width:1px;height:1px;"></iframe> 
+       </div>
+   </div>
+</li>
+</ul>
+</div> 
+</body>
+</html>

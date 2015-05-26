@@ -1,0 +1,435 @@
+<html>
+<title>FHEM</title>
+<head>
+<!-- 
+     /* FHEM tablet ui */
+     /*
+     * Just another dashboard for FHEM
+     *
+     * Version: 1.3.0
+     * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+     * URL: https://github.com/knowthelist/fhem-tablet-ui
+     *
+     * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+     *
+     * - create a new folder named 'tablet' in /<fhem-path>/www
+     * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+     * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+     * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+     */
+    -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="116">
+    <meta name="widget_base_height" content="131">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" /> 
+    <script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/widget_klimatrend.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+    
+    <!-- Enable this lines for usage with WebViewControl -->
+    <script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+    <script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+    <script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+    <!-- End for WebViewControl -->
+</head>
+<body>
+<div class="gridster">
+<ul>
+
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+    <header>RÄUME</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(245,251,79) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-film" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+    <div class="container">
+<div data-type="circlemenu" data-direction="right-bottom" class="cell circlemenu">
+    <ul>
+      <li><div data-type="push" data-icon="fa-umbrella" data-off-color="#33dd22" ></div></li>
+      
+      <li><a href="wetter.html">
+        <div data-type="push" 
+             data-icon="fa-cloud"></div></a></li>
+      
+      <li><a href="pollen.html">
+        <div data-type="push" 
+             data-icon="fa-pagelines"></div></a></li>
+      <li><a href="biowetter.html">
+        <div data-type="push" 
+             data-icon="fa-smile-o"></div></a></li>
+    </ul>    
+</div></div>
+</li>
+ <style>
+    div.weather td {
+        padding:2px !important;
+        text-align:left;
+        white-space:nowrap;
+    }
+    div.weather div[data-type=label] {
+        display:inline;
+        font-weight:bold;
+        white-space:normal;
+    }
+</style>
+</li>
+<li data-row="1" data-col="10" data-sizex="1" data-sizey="4">
+    <header>ÜBERSICHTEN</header>
+    <style>
+    #room_batterie #bg {
+        color: rgb(255,165,0) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a> 
+<a id="room_statistik" href="statistik.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bar-chart" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+
+<li data-row="1" data-col="2" data-sizex="1" data-sizey="5"> 
+    <header>ONLINE</header>
+        <div data-type="contact" data-device="FritzBox" data-icon="fa-globe" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Fritz Box</div> 
+        <div type="label" class="cell">&nbsp;</div> 
+        <div data-type="contact" data-device="CAM_Ben" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Ben</div>
+        <div type="label" class="cell">&nbsp;</div>  
+        <div data-type="contact" data-device="Cam_Julia" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Julia</div> 
+        <div type="label" class="cell">&nbsp;</div>
+        <div data-type="contact" data-device="CAM_Wohnzimmer" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Wohnzimmer</div>
+        <div type="label" class="cell">&nbsp;</div>
+        <div data-type="contact" data-device="CAM_Keller" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Keller</div>   
+        <div type="label" class="cell">&nbsp;</div>
+         <div data-type="contact" data-device="SatReciver" data-icon="fa-asterisk" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">SatReciver</div> 
+        <div type="label" class="cell">&nbsp;</div>    
+        <div data-type="contact" data-device="NAS" data-icon="fa-server" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">NAS</div>  
+        <div type="label" class="cell">&nbsp;</div>  
+        <div data-type="contact" data-device="XBMC" data-icon="fa-music" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">XBMC</div> 
+        <div type="label" class="cell">&nbsp;</div>  
+        <div data-type="contact" data-device="Drucker" data-icon="fa-print" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">HP Officejet Pro 8620</div> 
+</li>
+<li data-row="1" data-col="3" data-sizex="1" data-sizey="2">
+    <header>Fensterkontakt</header>
+    <div class="cell">Wohnzimmer</div>
+    <div class="darker">Status</div>
+ 
+    <div data-type="symbol" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="Activity"
+                        data-icons='["fa-circle","fa-circle"]'
+                        data-get-on='["alive","dead"]' 
+                        data-on-colors='["green","red"]'>
+                       
+                    </div><br>
+                    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Seriennummer</div>
+                    <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="D-serialNr">
+                        
+                    </div><br>
+                    <!-- <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="protLastRcv"
+                        class="darker narrow">
+                    </div> -->
+                    <div class="darker">Firmware</div>
+                    <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                         data-get="D-firmware">
+                        
+                    </div>
+</li>
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="2">
+    <header>Fensterkontakt</header>
+    <div class="cell">Schlafzimmer</div>
+    <div class="darker">Status</div>
+ 
+    <div data-type="symbol" data-device="Fensterkontakt.Schlafzimmer"
+                        data-get="Activity"
+                        data-icons='["fa-circle","fa-circle"]'
+                        data-get-on='["alive","dead"]' 
+                        data-on-colors='["green","red"]'>
+                       
+                    </div><br>
+                    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Fensterkontakt.Schlafzimmer"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Seriennummer</div>
+                    <div data-type="label" data-device="Fensterkontakt.Schlafzimmer"
+                        data-get="D-serialNr">
+                        
+                    </div><br>
+                    <!-- <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="model"
+                        class="darker narrow">
+                    </div> -->
+                    <div class="darker">Firmware</div>
+                    <div data-type="label" data-device="Fensterkontakt.Schlafzimmer"
+                         data-get="D-firmware">
+                        
+                    </div>
+</li>
+<li data-row="1" data-col="5" data-sizex="1" data-sizey="2">
+    <header>Ben</header>
+    <div class="cell">Fensterkontakt</div>
+    <div class="darker">Status</div>
+ 
+    <div data-type="symbol" data-device="Fensterkontakt.Ben"
+                        data-get="Activity"
+                        data-icons='["fa-circle","fa-circle"]'
+                        data-get-on='["alive","dead"]' 
+                        data-on-colors='["green","red"]'>
+                       
+                    </div><br>
+                    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Fensterkontakt.Ben"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Seriennummer</div>
+                    <div data-type="label" data-device="Fensterkontakt.Ben"
+                        data-get="D-serialNr">
+                        
+                    </div><br>
+                    <!-- <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="model"
+                        class="darker narrow">
+                    </div> -->
+                    <div class="darker">Firmware</div>
+                    <div data-type="label" data-device="Fensterkontakt.Ben"
+                         data-get="D-firmware">
+                        
+                    </div>
+</li>
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="2">
+    <header>Julia</header>
+    <div class="cell">Fensterkontakt</div>
+    <div class="darker">Status</div>
+ 
+    <div data-type="symbol" data-device="Fensterkontakt.Julia"
+                        data-get="Activity"
+                        data-icons='["fa-circle","fa-circle"]'
+                        data-get-on='["alive","dead"]' 
+                        data-on-colors='["green","red"]'>
+                       
+                    </div><br>
+                    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Fensterkontakt.Julia"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Seriennummer</div>
+                    <div data-type="label" data-device="Fensterkontakt.Julia"
+                        data-get="D-serialNr">
+                        
+                    </div><br>
+                    <!-- <div data-type="label" data-device="Fensterkontakt.Wohnzimmer"
+                        data-get="model"
+                        class="darker narrow">
+                    </div> -->
+                    <div class="darker">Firmware</div>
+                    <div data-type="label" data-device="Fensterkontakt.Julia"
+                         data-get="D-firmware">
+                        
+                    </div>
+</li>
+
+<li data-row="1" data-col="7" data-sizex="2" data-sizey="1">
+    <header>CUL</header>
+    <div class="cell">VERSION</div>
+    <div data-type="label" data-device="CUL1"
+                        data-get="version">    
+                    </div></br>
+<div class="cell">Device Name</div>
+    <div data-type="label" data-device="CUL1"
+                        data-get="DeviceName">    
+                    </div>
+                </li>
+
+<li data-row="2" data-col="7" data-sizex="2" data-sizey="1">
+    <header>JeeLink</header>
+    <div class="cell">MODEL</div>
+    <div data-type="label" data-device="myJeeLink"
+                        data-get="model">    
+                    </div>
+<div class="cell">Device Name</div>
+    <div data-type="label" data-device="myJeeLink"
+                        data-get="DeviceName">    
+                    </div>
+                </li>
+                    
+
+<li data-row="3" data-col="3" data-sizex="1" data-sizey="2">
+    <header>Wandthermostat</header>
+    <div class="cell">Wohnzimmer</div>
+    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Wohnzimmer.Wandthermostat"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Modus</div>
+                    <div data-type="label" data-device="Wohnzimmer.Wandthermostat"
+                        data-get="controlMode"
+                        data-get-on='["auto","low"]' 
+                        data-on-colors='["green","orange"]'>
+                    </div><br>
+    
+</li>
+<li data-row="3" data-col="4" data-sizex="1" data-sizey="2">
+    <header>Wandthermostat</header>
+    <div class="cell">Schlafzimmer</div>
+    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Schlafzimmer.Wandthermostat"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Modus</div>
+                    <div data-type="label" data-device="Schlafzimmer.Wandthermostat"
+                        data-get="controlMode"
+                        data-get-on='["auto","low"]' 
+                        data-on-colors='["green","orange"]'>
+                    </div><br>
+    
+</li>
+<li data-row="3" data-col="5" data-sizex="1" data-sizey="2">
+    <header>Wandthermostat</header>
+    <div class="cell">Ben</div>
+    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Ben.Wandthermostat"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Modus</div>
+                    <div data-type="label" data-device="Ben.Wandthermostat"
+                        data-get="controlMode"
+                        data-get-on='["auto","low"]' 
+                        data-on-colors='["green","orange"]'>
+                    </div><br>
+    
+</li>
+<li data-row="3" data-col="6" data-sizex="1" data-sizey="2">
+    <header>Wandthermostat</header>
+    <div class="cell">Julia</div>
+    <div class="darker">Batterie</div>
+                    <div data-type="symbol" data-device="Julia.Wandthermostat"
+                        data-get="battery"
+                        data-icons='["fa-circle","fa-circle"]' 
+                        data-get-on='["ok","low"]' 
+                        data-on-colors='["green","red"]'
+                        style="font-size:2em">
+                    </div><br>
+                    <div class="darker">Modus</div>
+                    <div data-type="label" data-device="Julia.Wandthermostat"
+                        data-get="controlMode"
+                        data-get-on='["auto","low"]' 
+                        data-on-colors='["green","orange"]'>
+                    </div><br>
+    
+</li>
+</ul>
+</div> 
+</body>
+</html>

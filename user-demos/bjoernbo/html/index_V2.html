@@ -1,0 +1,793 @@
+<html>
+<title>FHEM</title>
+<head>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+<!-- 
+     /* FHEM tablet ui */
+     /*
+     * Just another dashboard for FHEM
+     *
+     * Version: 1.3.0
+     * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+     * URL: https://github.com/knowthelist/fhem-tablet-ui
+     *
+     * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+     *
+     * - create a new folder named 'tablet' in /<fhem-path>/www
+     * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+     * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+     * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+     *
+     * Colorpicker
+     * http://www.w3schools.com/tags/ref_colorpicker.asp
+     */
+    -->
+    <meta name='toast' content='0'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="116">
+    <meta name="widget_base_height" content="131">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=not output --> 
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" />
+    <link rel="stylesheet" href="/fhem/www/tablet/customfonts/font1/style.css">
+    <script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+    <!-- available class: container,left,right,cell,narrow,darker,big,small -->
+    <!-- available data-type: contact,dimmer,homestatus,label,push,slider,switch,thermostat,volume -->
+    <!-- Enable this lines for usage with WebViewControl -->
+    <script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+    <script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+    <script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+    <!-- End for WebViewControl -->
+</head>
+<body>
+<div class="gridster">
+<ul>
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+	<header>RÄUME</header>
+    <style>
+    #room_index #bg {
+        color: rgb(170,105,0) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x font1-sofa" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+</div>
+<div class="container">
+<div data-type="circlemenu"  class="cell circlemenu" data-direction="right-half"  data-circle-radius="60">
+    <ul>
+      <li><div data-type="symbol" 
+               data-icon="font1-sun" 
+               data-on-background-color="rgb(111,69,120)" 
+               data-off-background-color="rgb(111,69,120)"
+               data-on-color="rgb(255,255,255)" 
+               data-off-color="rgb(255,255,255)" 
+               data-background-icon="fa-circle">
+           </div>
+       </li>    
+        <li><div data-type="button" 
+             data-on-background-color="rgb(153,204,0)"
+             data-url="wetter.html"
+             data-icon="fa-cloud"
+             data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(71,163,117)"
+               data-url="pollen.html"
+               data-icon="fa-pagelines"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(51,133,255)"
+               data-url="biowetter.html"
+               data-icon="fa-smile-o"
+               data-on-color="white">
+         </div></li>
+    </ul>    
+</div>
+</li>
+<li data-row="1" data-col="10" data-sizex="1" data-sizey="4">
+    <header>ÜBERSICHTEN</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(249,252,156) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a> 
+<div class="container">
+<div data-type="circlemenu"  class="cell circlemenu" data-direction="left-half"  data-circle-radius="125">
+    <ul>
+      <li><div data-type="symbol" 
+               data-icon="font1-stats-dots" 
+               data-on-background-color="rgb(111,69,120)" 
+               data-off-background-color="rgb(111,69,120)"
+               data-on-color="rgb(255,255,255)" 
+               data-off-color="rgb(255,255,255)" 
+               data-background-icon="fa-circle">
+           </div>
+       </li>    
+        <li><div data-type="button" 
+             data-on-background-color="rgb(130,179,25)"
+             data-url="02wz_statistik.html"
+             data-icon="font1-sofa"
+             data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(238,127,174)"
+               data-url="#.html"
+               data-icon="fa-female"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(0,135,168)"
+               data-url="#.html"
+               data-icon="fa-male"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(211,17,22)"
+               data-url="01sz_statistik.html"
+               data-icon="fa-bed"
+               data-on-color="white">
+         </div></li>
+         <li><div data-type="button" 
+             data-on-background-color="rgb(0,204,255)"
+             data-url="statistik_badezimmer.html"
+             data-icon="fa-tint"
+             data-on-color="white">
+         </div></li>
+         <li><div data-type="button"
+               data-on-background-color="rgb(153,255,51)"
+               data-url="05wetter_statistik.html"
+               data-icon="fa-cloud"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(255,204,51)"
+               data-url="04verbrauch.html"
+               data-icon="fa-bolt"
+               data-on-color="white">
+           </div></li>
+           <li><div data-type="button"
+               data-on-background-color="rgb(82,102,41)"
+               data-url="03benzin.html"
+               data-icon="fa-car"
+               data-on-color="white">
+           </div></li>
+    <li><div data-type="button"
+               data-on-background-color="rgb(82,204,41)"
+               data-url="08raspberry.html"
+               data-icon="font1-tux"
+               data-on-color="white">
+           </div></li>
+    </ul>    
+</div>
+<div>
+    <a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+        <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+        <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+    </a>
+</div>
+<li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
+  <header>SCHLAFZIMMER</header>
+  <div class="left">
+  <div  data-type="thermostat" 
+        data-device="Schlafzimmer.Wandthermostat"
+        data-get="desired-temp"
+        data-temp="measured-temp" 
+        data-min="4" 
+        data-off="off" 
+        data-max="31" 
+        data-boost="boostclass" 
+        class="cell center">
+               <div data-type="label"
+                    data-device="Schlafzimmer.Wandthermostat" 
+                    data-get="humidity" 
+                    data-unit=" %" 
+                    class="cell small">
+                </div>
+        </div></div>
+        <div class="container">
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="CUL_HM_HM_TC_IT_WM_W_EU_303215" 
+                     data-get="batteryLevel"
+                     data-unit="V" 
+                     class="darker narrow">
+                </div>
+                <div class="label" 
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="Schlafzimmer.Wandthermostat"
+                     data-get="controlMode"
+                     class="darker narrow">
+                </div>
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label" 
+                     data-device="Scglafzimmer.Wandthermostat" 
+                     data-get="boostTime" 
+                     class="darker narrow">
+                </div>
+    </div>      
+</li>
+<li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
+  <header>BEN</header>
+    <div class="left">
+    <div data-type="thermostat"
+         data-device="Ben.Wandthermostat"
+         data-get="desired-temp"
+         data-temp="measured-temp" 
+         data-min="4"
+         data-off="off"
+         data-max="31"
+         data-boost="boostclass"
+         class="cell center">
+            <div data-type="label"
+                 data-device="Ben.Wandthermostat"
+                 data-get="humidity"
+                 data-unit=" %" 
+                 class="cell small">
+            </div>
+        </div></div>
+        <div class="container">
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="CUL_HM_HM_TC_IT_WM_W_EU_303BC6"
+                     data-get="batteryLevel"
+                     data-unit="V"
+                     class="darker narrow">
+                </div>
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="Ben.Wandthermostat"
+                     data-get="controlMode"
+                     class="darker narrow">
+                </div>
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="Ben.Wandthermostat"
+                     data-get="boostTime"
+                     class="darker narrow">
+                </div>
+    </div>
+</li>
+<li data-row="1" data-col="4" data-sizex="2" data-sizey="1">
+  <header>JULIA</header>
+    <div class="left">
+        <div data-type="thermostat"
+             data-device="Julia.Wandthermostat"
+             data-get="desired-temp"
+             data-temp="measured-temp" 
+             data-min="4"
+             data-off="off" 
+             data-max="31" 
+             data-boost="boostclass" 
+             class="cell center">
+                <div data-type="label" 
+                     data-device="Julia.Wandthermostat" 
+                     data-get="humidity" 
+                     data-unit=" %" 
+                     class="cell small">
+                </div>
+                </div></div>
+    <div class="container">
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="CUL_HM_HM_TC_IT_WM_W_EU_303B60" 
+                     data-get="batteryLevel" 
+                     data-unit="V" 
+                     class="darker narrow">
+                </div>
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label" 
+                     data-device="Julia.Wandthermostat" 
+                     data-get="controlMode" 
+                     class="darker narrow">
+                </div>
+                <div class="label"
+                     class="cell">&nbsp;
+                </div>
+                <div data-type="label"
+                     data-device="Julia.Wandthermostat" 
+                     data-get="boostTime" 
+                     class="darker narrow">
+                </div>
+        </div>
+</li>
+</li>
+<li data-row="5" data-col="10" data-sizex="1" data-sizey="1">
+    <header>RAUCHMELDER</br></br></header>
+    <div class="container">
+        <div class="cell center">
+            <div type="switch"
+                 device="FL.Rauchmelder"
+                 data-on-color="FF4040"
+                 data-get-on="ON"
+                 data-off-color="#33dd22" 
+                 data-get-off="OFF"
+                 data-icon="font1-fire" 
+                 class="top-space">
+            </div>
+        </div>
+    </div>
+</li>
+<li data-row="2" data-col="2" data-sizex="1" data-sizey="2">
+	<header>KUECHE</header>
+	<div class="container">
+	   <div class="left"></div>
+	   <div class="center">
+		 <div type="switch"
+              device="Dekoleuchte" 
+              class="cell">
+        </div>
+		 <div type="label"
+              class="cell">Dekoleuchte</div>
+        <div type="switch"
+             device="Lampe_Kueche" 
+             class="cell">
+        </div>
+        <div type="label"
+             class="cell">Lampe</div>
+	</div>
+</li>
+<li data-row="2" data-col="3" data-sizex="1" data-sizey="2">
+        <header>SCHLAFZIMMER</header>
+        <div class="container">
+        <div class="left"></div>
+        <div class="center">
+        <div data-type="symbol" data-device="Fensterkontakt.Schlafzimmer"
+             data-get-on='["geöffnet","geschlossen"]'
+             data-icons='["ftui-window warn","ftui-window"]'
+             data-on-colors='["#aa6900","#555"]'
+             class="narrow big"></div><div type="label" class="cell">Fenster</div>
+        </div>
+        <div data-type="switch" data-device="Schrankbeleuchtung" class="cell" ></div>
+        <div data-type="label" class="cell" >Schrank</div>
+        </div>
+</li>
+<li data-row="2" data-col="4" data-sizex="1" data-sizey="3">
+        <header>WOHNZIMMER</header>
+        <div class="container">
+            <div class="left"></div>
+                <div class="center">
+                <div data-type="symbol"
+                     data-device="Fensterkontakt.Wohnzimmer"
+                     data-get-on='["geöffnet","geschlossen"]'
+                     data-icons='["ftui-window warn","ftui-window"]'
+                     data-on-colors='["#aa6900","#555"]'
+                     class="narrow big">
+                </div>
+        <div type="label"
+             class="cell">Fenster</div>
+        <div type="switch"
+             device="Stehlampe" 
+             class="cell">
+        </div>
+        <div type="label"
+             class="cell">Stehlampe</div>
+        <div type="switch"
+             device="WZ_Dimmer"  
+             class="cell" >
+        </div>
+        <div type="label" 
+             class="cell">Dimmer</div>
+        <div type="switch"
+             device="LED_Sideboard"
+             class="cell" >
+        </div>
+        <div type="label"
+             class="cell">LED Sideboard</div>
+    </div>
+    </div>
+</li>
+<li data-row="2" data-col="6" data-sizex="2" data-sizey="1">
+	<header>WOHNZIMMER</header>
+	<div class="container">
+        <div class="left">
+                 <div data-type="thermostat"
+                      data-device="Wohnzimmer.Wandthermostat" 
+                      data-get="desired-temp"
+                      data-temp="measured-temp"  
+                      data-min="4" 
+                      data-off="off" 
+                      data-max="31" 
+                      data-boost="boostclass" 
+                      class="cell">
+                        <div type="label" 
+                             device="Wohnzimmer.Wandthermostat" 
+                             data-get="humidity" 
+                             data-unit=" %" 
+                             class="cell small">
+                        </div>
+                </div>
+        </div>
+            <div class="container">
+                <div class="label" class="cell">&nbsp;</div>
+                <div data-type="label"
+                     data-device="CUL_HM_HM_TC_IT_WM_W_EU_303215" 
+                     data-get="batteryLevel" 
+                     data-unit="V" 
+                     class="darker narrow">
+                </div>
+                <div class="label" class="cell">&nbsp;</div>
+                <div data-type="label"
+                     data-device="Wohnzimmer.Wandthermostat" 
+                     data-get="controlMode" 
+                     class="darker narrow">
+                </div>
+                <div class="label" class="cell">&nbsp;</div>
+                <div data-type="label" 
+                     data-device="Wohnzimmer.Wandthermostat" 
+                     data-get="boostTime" 
+                     class="darker narrow">
+                </div>
+                <div class="label" class="cell">&nbsp;</div>
+                <div data-type="label" 
+                     data-device="Wohnzimmer.Wandthermostat" 
+                     data-get="battery"  
+                     class="darker narrow">
+                </div>
+                <div class="label" class="cell">&nbsp;</div>
+                <div data-type="label" 
+                     data-device="Wohnzimmer.Wandthermostat" 
+                     data-get="desired-temp" 
+                     class="darker narrow">
+                </div>
+                <div class="label" class="cell">&nbsp;</div>
+            </div>
+    </div>
+</li>
+<li data-row="1" data-col="8" data-sizex="2" data-sizey="4">
+    <header>VERBRAUCH</header>
+    <div data-type="label" class="cell">akt. Verbr.</div>
+        <div data-type="label"
+             data-device="ESAx000WZ_5242" 
+             data-get="actual" 
+             data-unit=" kWh" 
+             data-fix="1" 
+             class="cell big">
+        </div>
+        <div class="cell">&nbsp;</div>
+        <div data-type="label" class="cell">Tagesverbrauch</div>
+        <div data-type="label" 
+             data-device="ESAx000WZ_5242" 
+             data-get="day" 
+             data-unit=" kWh" 
+             data-fix="1" 
+             class="cell big">
+        </div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Gestern</div> 
+        <div data-type="label" 
+             data-device="ESAx000WZ_5242" 
+             data-get="day_last" 
+             data-unit=" kWh" 
+             data-fix="0" 
+             class="cell big">
+        </div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Monatsverbrauch</div>     
+        <div data-type="label" 
+             data-device="ESAx000WZ_5242" 
+             data-get="month" 
+             data-unit=" kWh" 
+             data-fix="0" 
+             class="cell big">
+        </div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Vormonat</div>
+        <div data-type="label" 
+             data-device="ESAx000WZ_5242" 
+             data-get="month_last" 
+             data-unit=" kWh" 
+             data-fix="0" 
+             class="cell big">
+        </div>
+        <div class="cell">&nbsp;</div>
+        <div data-type="label" class="cell">Jahresverbrauch</div>
+        <div data-type="label" 
+             data-device="ESAx000WZ_5242" 
+             data-get="year" 
+             data-unit=" kWh" 
+             data-fix="0" 
+             class="cell big">
+        </div>     
+</li>
+ <li data-row="3" data-col="6" data-sizex="2" data-sizey="1">
+	<header>MULTIMEDIA</header>
+	   
+	       <br><br>
+		      <div data-type="switch" 
+                   data-device="TV_Modus" 
+                   data-icon="font1-tv" 
+                   class="inline"></div>
+                   
+       
+          <div data-type="push"
+               data-cmd="set hub command lg-fernseher Input" 
+               data-icon="fa-desktop"
+               class="inline"></div>
+              
+        
+		          <div data-type="switch" 
+                   data-device="XBMC_Modus" 
+                   data-icon="font1-kodi" 
+                   class="inline"></div>
+		          
+	   
+	
+</li>
+<li data-row="2" data-col="5" data-sizex="1" data-sizey="2">
+    <header>Qualität</header>
+    <div class="container">
+        <div class="center">
+        <div type="label" class="cell">CO2 Belastung</div>
+        <div type="label" 
+             device="netatmo" 
+             data-get="co2" data-fix="0" 
+             data-unit=" ppm" 
+             class="cell big"
+             data-limits="[0,200,400,600,800,1000]"
+             data-colors='["green","yellowgreen","greenyellow","yellow","orange","red"]'>
+        </div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Luftfeuchte</div>
+        <div type="label" 
+             device="Wohnzimmer.Wandthermostat" 
+             data-get="humidity" 
+             data-fix="0" 
+             data-unit="%" 
+             class="cell big">
+        </div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Lärm</div>
+        <div type="label" 
+             device="netatmo" 
+             data-get="noise" 
+             data-fix="0" 
+             data-unit=" dB" 
+             class="cell big">
+        </div>     
+</div>
+</div>
+</li>
+<li data-row="4" data-col="2" data-sizex="2" data-sizey="1">
+    <header>KINDERZIMMER</header>
+    <div class="container">
+        <div class="left">
+            <div data-type="symbol" 
+                 data-device="Fensterkontakt.Ben"
+                 data-get-on='["geöffnet","geschlossen"]'
+                 data-icons='["ftui-window warn","ftui-window"]'
+                 data-on-colors='["#aa6900","#555"]'
+                 class="narrow big">
+            </div>
+        <div type="label" class="cell">Fenster Ben</div>
+        </div>
+        <div class="right">
+            <div data-type="symbol"
+                 data-device="Fensterkontakt.Julia"
+                 data-get-on='["geöffnet","geschlossen"]'
+                 data-icons='["ftui-window warn","ftui-window"]'
+                 data-on-colors='["#aa6900","#555"]'
+                 class="narrow big">
+            </div>
+        <div type="label" class="cell">Fenster Julia</div>
+        </div>
+    </div>
+</li>
+</li>
+</li>
+<li data-row="5" data-col="1" data-sizex="1" data-sizey="1"> 
+    <header>UNWETTER</br></br></header><div class="container">
+       <div data-type="symbol" 
+            data-device="Unwetterzentrale"
+            data-get="WarnCount"
+            date-icon="fa-bolt warn"
+            class="top-space"></div>
+</li>
+<li data-row="5" data-col="2" data-sizex="1" data-sizey="1"> 
+    <header>1LIVE</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://1live.akacast.akamaistream.net/7/706/119434/v1/gnl.akacast.akamaistream.net/1live">
+        </div>
+
+</li>
+<li data-row="5" data-col="3" data-sizex="1" data-sizey="1"> 
+    <header>WDR 2</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://wdr-mp3-m-wdr2-koeln.akacast.akamaistream.net/7/812/119456/v1/gnl.akacast.akamaistream.net/wdr-mp3-m-wdr2-koeln">
+        </div>
+</li>
+<li data-row="5" data-col="4" data-sizex="1" data-sizey="1"> 
+    <header>Antenne Bayern</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio"
+             class="top-space" 
+             data-url="http://mp3channels.webradio.antenne.de/antenne">
+        </div>
+</li>
+<li data-row="5" data-col="5" data-sizex="1" data-sizey="1"> 
+    <header>Deluxe Lounge Radio</header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://radio.cdn.deluxemusic.tv/deluxemusic.tv/lounge_web/mp3">
+        </div>
+</li>
+</li>
+<li data-row="5" data-col="6" data-sizex="1" data-sizey="1"> 
+    <header>Fritz</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://rbb.ic.llnwd.net/stream/rbb_fritz_mp3_m_a">
+        </div>
+</li>
+</li>
+<li data-row="5" data-col="7" data-sizex="1" data-sizey="1"> 
+    <header>Radio Bochum</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://edge.live.mp3.mdn.newmedia.nacamar.net/ps-radiobochum/livestream.mp3">
+        </div>
+</li>
+<li data-row="5" data-col="8" data-sizex="1" data-sizey="1"> 
+    <header>Hit Radio FFH</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream" 
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://mp3.ffh.de/radioffh/hqlivestream.mp3">
+        </div>
+</li>
+<li data-row="5" data-col="9" data-sizex="1" data-sizey="1"> 
+    <header>Sunshine live</br></br></header><div class="container">
+        <div class="cell center">
+        <div data-type="playstream"
+             data-icon="font1-radio" 
+             class="top-space" 
+             data-url="http://stream.hoerradar.de/sunshinelive-mp3-128">
+        </div>
+</li>
+<li data-row="4" data-col="5" data-sizex="1" data-sizey="1">
+    <div class="container">
+    <header>Spritpreise</header>
+    <div class="cell" class="inline"></div>ARAL
+    <div data-type="label"
+         data-device="ARAL"
+         data-get="Diesel"
+         class="inline">
+    </div>
+<div class="cell" class="inline"></div>GO
+<div data-type="label" 
+     data-device="GO" 
+     data-get="Diesel"
+     class="inline">
+</div>
+<div class="cell" class="inline"></div>JET
+<div data-type="label"
+     data-device="JET"
+     data-get="Diesel" 
+     class="inline">
+</div>
+<div class="cell" class="inline"></div>SB
+<div data-type="label"
+     data-device="SB" 
+     data-get="Diesel" 
+     class="inline">
+</div>
+<div class="cell" class="inline"></div>TOTAL
+<div data-type="label"
+     data-device="TOTAL" 
+     data-get="Diesel" 
+     class="inline">
+</div>
+</li>
+<li data-row="4" data-col="5" data-sizex="2" data-sizey="1"> 
+    <div class="container">
+    <div class="cell center">
+    <div style="text-align:center;padding:0.5em 0;">
+        <h2><a style="text-decoration:none;" href="http://www.zeitverschiebung.net/de/city/2947416"></h2>
+    <iframe src="http://www.zeitverschiebung.net/clock-widget-iframe?language=de&timezone=Europe%2FBerlin" 
+            width="100%"
+            height="130" 
+            frameborder="0"
+            seamless>
+    </iframe>
+    </div>
+    </div>
+    </div>
+</li>
+</ul>
+</div> 
+</body>
+</html>

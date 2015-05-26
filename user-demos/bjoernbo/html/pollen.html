@@ -1,0 +1,474 @@
+<html>
+<title>FHEM</title>
+<head>
+<!-- 
+     /* FHEM tablet ui */
+     /*
+     * Just another dashboard for FHEM
+     *
+     * Version: 1.3.0
+     * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+     * URL: https://github.com/knowthelist/fhem-tablet-ui
+     *
+     * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+     *
+     * - create a new folder named 'tablet' in /<fhem-path>/www
+     * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+     * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+     * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+     */
+    -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="116">
+    <meta name="widget_base_height" content="131">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" /> 
+    <script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/widget_klimatrend.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+    
+    <!-- Enable this lines for usage with WebViewControl -->
+    <script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+    <script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+    <script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+    <!-- End for WebViewControl -->
+</head>
+<body>
+<div class="gridster">
+<ul>
+
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+    <header>RÄUME</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(245,251,79) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-film" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+   <div class="container">
+<div data-type="circlemenu" data-direction="right-bottom" class="cell circlemenu">
+    <ul>
+      <li><div data-type="push" data-icon="fa-umbrella" data-off-color="#33dd22" ></div></li>
+      
+      <li><a href="wetter.html">
+        <div data-type="push" 
+             data-icon="fa-cloud"></div></a></li>
+      
+      <li><a href="pollen.html">
+        <div data-type="push" 
+             data-icon="fa-pagelines"></div></a></li>
+      <li><a href="biowetter.html">
+        <div data-type="push" 
+             data-icon="fa-smile-o"></div></a></li>
+    </ul>    
+</div></div>
+</li>
+ <style>
+    div.weather td {
+        padding:2px !important;
+        text-align:left;
+        white-space:nowrap;
+    }
+    div.weather div[data-type=label] {
+        display:inline;
+        font-weight:bold;
+        white-space:normal;
+    }
+</style>
+</li>
+<li data-row="1" data-col="10" data-sizex="1" data-sizey="4">
+    <header>ÜBERSICHTEN</header>
+    <style>
+    #room_statistik #bg {
+        color: rgb(230,105,120) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a> 
+<a id="room_statistik" href="statistik.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bar-chart" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+
+<li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+        <header>Ahorn</header>
+       <div data-type="symbol" data-device="Pollenflug" data-get="Ahorn"  
+
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+<li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+        <header>Ambrosia</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Ambrosia" 
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Beifuss</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Beifuss"  
+
+        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Birke</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Birke" 
+        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Brennessel</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Brennessel" 
+           data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="1" data-col="7" data-sizex="1" data-sizey="1">
+        <header>Buche</header>
+            <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Buche"
+               data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>  
+
+</li>
+ <li data-row="1" data-col="8" data-sizex="1" data-sizey="1">
+        <header>Eiche</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Eiche"
+               data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>  
+</li>
+ <li data-row="1" data-col="9" data-sizex="1" data-sizey="1">
+        <header>Erle</header>
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Erle" 
+                         data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>  
+</li>
+<li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+        <header>Esche</header>
+       <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Esche"
+         data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>  
+
+</li>
+<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+        <header>Fichte</header>
+            <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Fichte"
+              data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+<li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Flieder</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Flieder" 
+         data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+      <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Gänsefuss</header>  
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Gaensefuss" 
+              data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+ <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Gräser</header>  
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Graeser"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="1">
+        <header>Hafer</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Hafer"
+          data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+          data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="2" data-col="8" data-sizex="1" data-sizey="1">
+        <header>Hasel</header>
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Hasel"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="2" data-col="9" data-sizex="1" data-sizey="1">
+        <header>Holunder</header>
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Holunder"
+                data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+
+</li>
+<li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+        <header>Hopfen</header>
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Hopfen"
+                 data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+        <header>Kiefer</header>
+                    <td><div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Kiefer"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+</li>
+<li data-row="3" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Linde</header>
+        <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Linde"
+          data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="3" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Loewenzahn</header>
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Loewenzahn" 
+                          data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+       <li data-row="3" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Mais</header>       
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Mais" 
+                          data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="3" data-col="7" data-sizex="1" data-sizey="1">
+        <header>Nessel</header>
+            <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Nessel"
+              data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="3" data-col="8" data-sizex="1" data-sizey="1">
+        <header>Pappel</header>
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Pappel"
+                  data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="3" data-col="9" data-sizex="1" data-sizey="1">
+        <header>Platane</header>
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Platane"
+                      data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+      <li data-row="4" data-col="2" data-sizex="1" data-sizey="1">
+        <header>Raps</header>        
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Raps"
+                data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="4" data-col="3" data-sizex="1" data-sizey="1">
+        <header>Roggen</header> 
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Roggen" 
+                    data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+</li>
+<li data-row="4" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Rotbuche</header> 
+                <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Rotbuche" 
+                data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="4" data-col="5" data-sizex="1" data-sizey="1">
+        <header>Spitzwegerich</header> 
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Spitzwegerich"
+                    data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="4" data-col="6" data-sizex="1" data-sizey="1">
+        <header>Tanne</header> 
+               <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Tanne"
+               data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+</li>
+<li data-row="4" data-col="7" data-sizex="1" data-sizey="1">
+        <header>Ulme</header> 
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Ulme"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+</li>
+<li data-row="4" data-col="8" data-sizex="1" data-sizey="1">
+        <header>Weide</header> 
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Weide"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+</li>
+<li data-row="4" data-col="9" data-sizex="1" data-sizey="1">
+        <header>Weizen</header> 
+                    <div data-type="symbol" data-subtype="Pollenflug" data-device="Pollenflug" data-get="Weizen"
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div> 
+
+    </li> 
+</ul>
+</div> 
+</body>
+</html>

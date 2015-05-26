@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="gridster">
+    <ul>
+		<li data-row="1" data-col="1" data-sizex="1" data-sizey="6" data-template="menu.html"></li>
+		<li data-row="1" data-col="2" data-sizex="8" data-sizey="6">
+			<header><font size="+1">Wetter</font></header>
+			<table class="calls" width="100%">
+				<tr>
+					<td colspan="2">Allgemein</td>
+					<td colspan="2">Früh</td>
+					<td colspan="2">Mittag</td>
+					<td colspan="2">Abend</td>
+					<td colspan="2">Nacht</td>
+				</tr>
+				<tr><td colspan="10"><header><font color="#CCCCCC">Heute</font></header></td></tr>
+				<tr>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc0_tempMin" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc0_tempMax" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc0_chOfRainDay" data-unit="%" class="left large"></div></td>
+						</tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+							<td><div data-type="weather" data-icon="B" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc0_sun" data-unit="%" class="left large"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc0_weatherMorningIcon" data-imageset="kleinklima" class="cell large"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc0_weatherMorning" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_cloud06" data-unit="%" class="left"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp06" data-unit="%B0C%0A" class="left big"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain06" data-unit="%" class="left"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc0_weatherDayIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc0_weatherDay" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_cloud12" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp12" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain12" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc0_weatherEveningIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc0_weatherEvening" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_cloud18" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp18" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRain18" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc0_weatherNightIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc0_weatherNight" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_cloud21" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_temp21" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc0_chOfRainNight" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td colspan="10">&nbsp;</td></tr>
+				<tr><td colspan="10"><header><font color="#CCCCCC">Morgen</font></header></td></tr>
+				<tr>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc1_tempMin" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc1_tempMax" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc1_chOfRainDay" data-unit="%" class="left large"></div></td>
+						</tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+							<td><div data-type="weather" data-icon="B" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc1_sun" data-unit="%" class="left large"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc1_weatherMorningIcon" data-imageset="kleinklima" class="cell large"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc1_weatherMorning" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_cloud06" data-unit="%" class="left"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_temp06" data-unit="%B0C%0A" class="left big"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_chOfRain06" data-unit="%" class="left"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc1_weatherDayIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc1_weatherDay" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_cloud12" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_temp12" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_chOfRain12" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc1_weatherEveningIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc1_weatherEvening" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_cloud18" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_temp18" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_chOfRain18" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc1_weatherNightIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc1_weatherNight" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_cloud21" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_temp21" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc1_chOfRainNight" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td colspan="10">&nbsp;</td></tr>
+				<tr><td colspan="10"><header><font color="#CCCCCC">Übermorgen</font></header></td></tr>
+				<tr>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc2_tempMin" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						<tr>
+							<td><div data-type="label" data-device="proplanta" data-get="fc2_tempMax" data-unit="%B0C%0A" class="cell big"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc2_chOfRainDay" data-unit="%" class="left large"></div></td>
+						</tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+							<td><div data-type="weather" data-icon="B" class="small right"></div></td>
+							<td><div data-type="label" data-device="proplanta" data-get="fc2_sun" data-unit="%" class="left large"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc2_weatherMorningIcon" data-imageset="kleinklima" class="cell large"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc2_weatherMorning" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_cloud06" data-unit="%" class="left"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_temp06" data-unit="%B0C%0A" class="left big"></div></td>
+						</tr>
+						<tr>
+							<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+							<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_chOfRain06" data-unit="%" class="left"></div></td>
+						</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc2_weatherDayIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc2_weatherDay" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_cloud12" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_temp12" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_chOfRain12" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc2_weatherEveningIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc2_weatherEvening" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_cloud18" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_temp18" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_chOfRain18" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<div class="right">
+							<div data-type="weather" data-device="proplanta" data-get="fc2_weatherNightIcon" data-imageset="kleinklima" class="cell"></div>
+							<div data-type="label" data-device="proplanta" data-get="fc2_weatherNight" class="cell small narrow"></div>
+						</div>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="Y" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_cloud21" data-unit="%" class="left"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="'" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_temp21" data-unit="%B0C%0A" class="left big"></div></td>
+							</tr>
+							<tr>
+								<td align="right"><div data-type="weather" data-icon="R" class="small right"></div></td>
+								<td align="left"><div data-type="label" data-device="proplanta" data-get="fc2_chOfRainNight" data-unit="%" class="left"></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td colspan="10">&nbsp;</td></tr>
+				<tr><td colspan="10" align="center" valign="bottom" height="250px">
+					<img src="http://www.foreca.de/meteogram.php?loc_id=xxxyyy&amp;mglang=de&amp;units=metric&amp;tf=24h"
+							 style="width:75%;height:100%">
+				</td></tr>
+			</table>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

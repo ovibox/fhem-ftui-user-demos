@@ -1,0 +1,779 @@
+<html>
+<title>FHEM</title>
+<head>
+	<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+	 * Version: 1.1.0
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="widget_base_width" content="116">
+	<meta name="widget_base_height" content="131">
+        <!-- <meta name="longpoll" content="1"> -->
+ 	
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+	<link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+	<link rel="stylesheet" href="/fhem/www/tablet/customfonts/font1/style.css">
+	<script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+	<script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+	<script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+<!-- End for WebViewControl -->
+</head>
+<body>
+<div class="gridster">
+<ul>
+<!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+	<header>DASHBOARD</header>
+<div type="label"class="cell"><a href="http://192.168.178.51:8083/fhem/?room=DashboardRoom"><img src="img/fhem-logo.png" height="100" wight="100" border="0" alt="Dashboard"></a></div> 
+ </li>
+-->
+
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+  <header>RÄUME</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(170,105,0) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-film" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wetter" href="wetter.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-umbrella" style="color: rgb(255,255,255);"></i>
+    </a>
+</div>
+</li>
+<li data-row="1" data-col="9" data-sizex="1" data-sizey="4">
+	<header>ÜBERSICHTEN</header>
+    <style>
+    #room_licht #bg {
+        color: rgb(249,252,156) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(153,153,0);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+<div class="container">
+<div data-type="circlemenu"  class="cell circlemenu" data-direction="left-half"  data-circle-radius="110">
+    <ul>
+      <li><div data-type="symbol" 
+               data-icon="font1-stats-dots" 
+               data-on-background-color="rgb(111,69,120)" 
+               data-off-background-color="rgb(111,69,120)"
+               data-on-color="rgb(255,255,255)" 
+               data-off-color="rgb(255,255,255)" 
+               data-background-icon="fa-circle">
+           </div>
+       </li>    
+        <li><div data-type="button" 
+             data-on-background-color="rgb(130,179,25)"
+             data-url="02wz_statistik.html"
+             data-icon="font1-sofa"
+             data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(238,127,174)"
+               data-url="#.html"
+               data-icon="fa-female"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(0,135,168)"
+               data-url="#.html"
+               data-icon="fa-male"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(211,17,22)"
+               data-url="01sz_statistik.html"
+               data-icon="fa-bed"
+               data-on-color="white">
+         </div></li>
+         <li><div data-type="button"
+               data-on-background-color="rgb(153,255,51)"
+               data-url="05wetter_statistik.html"
+               data-icon="fa-cloud"
+               data-on-color="white">
+         </div></li>
+      <li><div data-type="button"
+               data-on-background-color="rgb(255,204,51)"
+               data-url="04verbrauch.html"
+               data-icon="fa-bolt"
+               data-on-color="white">
+           </div></li>
+           <li><div data-type="button"
+               data-on-background-color="rgb(82,102,41)"
+               data-url="03benzin.html"
+               data-icon="fa-car"
+               data-on-color="white">
+           </div></li>
+    <li><div data-type="button"
+               data-on-background-color="rgb(82,204,41)"
+               data-url="08raspberry.html"
+               data-icon="font1-tux"
+               data-on-color="white">
+           </div></li>
+    </ul>    
+</div>
+<a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+</li>
+<li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+    <header>WOHNZIMMER</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(130,179,25);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-film" style="color: rgb(255,255,255);"></i>
+    </a>
+</div>
+</div>
+</li>
+<li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+    <header>KÜCHE</header>
+  <div class="container">
+          <div class="center">
+<div data-type="label" class="cell">&nbsp;</div>
+<a id="room_küche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(170,105,0);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+   </a>
+</div>
+</div>
+</li>
+
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+    <header>SCHLAFZIMMER</header>
+  <div class="container">
+          <div class="center">
+<div data-type="label" class="cell">&nbsp;</div>
+<a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(211,17,22);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+   </a>
+</div>
+</div>
+</li>
+<li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
+    <header>BEN</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(0,135,168);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+   </a>
+</div>
+</div>
+</li>
+<li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+    <header>JULIA</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(238,127,174);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+   </a>
+</div>
+</div>
+</li>
+<li data-row="1" data-col="7" data-sizex="1" data-sizey="1">
+    <header>GARTEN</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<div type="label"  class="cell fa-stack fa-2x">
+     <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(153,255,51);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-tree" style="color: rgb(255,255,255);"></i>
+</div></div>
+</li>
+<li data-row="1" data-col="8" data-sizex="1" data-sizey="1">
+    <header>VERBRAUCH</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<div type="label"  class="cell fa-stack fa-2x">
+     <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(255,204,51);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</div></div>
+</li>
+
+
+<li data-row="1" data-col="9" data-sizex="1" data-sizey="1">
+    <header>LAMPEN AUS!</header>
+  <div class="container">
+          <div class="center">
+<div type="label" class="cell">&nbsp;</div>
+<div type="switch" device="Lichter_aus" class="cell"></div>
+</div></div>
+</li>
+
+
+<li data-row="2" data-col="8" data-sizex="1" data-sizey="4">
+        <div data-type="label" class="cell">akt. Verbr.</div>
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="actual" data-unit=" kWh" data-fix="1" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div data-type="label" class="cell">Tagesverbrauch</div>
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="day" data-unit=" kWh" data-fix="1" class="cell big"></div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Gestern</div> 
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="day_last" data-unit=" kWh" data-fix="0" class="cell big"></div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Monatsverbrauch</div>     
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="month" data-unit=" kWh" data-fix="0" class="cell big"></div>
+          <div class="cell">&nbsp;</div>
+          <div data-type="label" class="cell">Vormonat</div>
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="month_last" data-unit=" kWh" data-fix="0" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div data-type="label" class="cell">Jahresverbrauch</div>
+        <div data-type="label" data-device="ESAx000WZ_5242" data-get="year" data-unit=" kWh" data-fix="0" class="cell big"></div>
+</li>
+<li data-row="2" data-col="9" data-sizex="1" data-sizey="4"> 
+        <div data-type="contact" data-device="FritzBox" data-icon="fa-globe" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Fritz Box</div> 
+        <div type="label" class="cell">&nbsp;</div> 
+        <div data-type="contact" data-device="CAM_Ben" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Ben</div>
+        <div type="label" class="cell">&nbsp;</div>  
+        <div data-type="contact" data-device="Cam_Julia" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Julia</div> 
+        <div type="label" class="cell">&nbsp;</div>
+        <div data-type="contact" data-device="CAM_Wohnzimmer" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Wohnzimmer</div>
+        <div type="label" class="cell">&nbsp;</div>
+        <div data-type="contact" data-device="CAM_Keller" data-icon="fa-video-camera" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">Keller</div>   
+        <div type="label" class="cell">&nbsp;</div>
+         <div data-type="contact" data-device="SatReciver" data-icon="font1-sat" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">SatReciver</div> 
+        <div type="label" class="cell">&nbsp;</div>    
+        <div data-type="contact" data-device="NAS" data-icon="fa-server" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">NAS</div>  
+        <div type="label" class="cell">&nbsp;</div>  
+        <div data-type="contact" data-device="XBMC" data-icon="font1-kodi" data-on-color="#33dd22" data-get-on="ONLINE" data-off-color="FF4040" data-get-off="OFFLINE" class="narrow"></div>
+        <div data-type="label" class="narrow darker small">KODI</div> 
+</li>
+<li data-row="2" data-col="2" data-sizex="1" data-sizey="2">
+        <div type="switch" device="LED_Sideboard" class="cell"></div>
+        <div type="label" class="cell">LED Sideboard</div>
+        <div type="switch" device="Stehlampe" class="cell"></div>
+        <div type="label" class="cell">Stehlampe</div>
+        <div type="switch" device="WZ_Dimmer" class="cell"></div>
+        <div type="label" class="cell">Dimmer</div>
+</li>
+<li data-row="2" data-col="3" data-sizex="1" data-sizey="2">
+        <div data-type="switch" data-device="Lampe_Kueche" class="cell"></div>
+                <div data-type="label" class="cell">Stehlampe</div>
+                <div data-type="switch" data-device="Dekoleuchte" class="cell"></div>
+                <div datatype="label" class="cell">Dekolicht</div>
+                <div class="center"><div data-type="dimmer" data-set="pct" data-get="pct"  data-device="lightify_kueche" 
+                data-get-on="[0-9]{1,3}|on" 
+                data-get-off="off" 
+                class="cell"></div></div>
+</li>
+<li data-row="2" data-col="4" data-sizex="1" data-sizey="2">
+                <div type="switch" device="Schrankbeleuchtung" class="cell"></div>
+                <div type="label" class="cell">Schrank</div>
+                <div class="center"><div data-type="dimmer" data-set="pct" data-get="pct"  data-device="lightify_sz_bjoern" 
+                data-get-on="[0-9]{1,3}|on" 
+                data-get-off="off" 
+                class="cell"></div></div>
+</li>
+<li data-row="2" data-col="5" data-sizex="1" data-sizey="2">
+                <div type="switch" device="Schrankbeleuchtung_Ben" class="cell"></div>
+                <div type="label" class="cell">Schrank</div>
+                <div class="center"><div data-type="dimmer" data-set="pct" data-get="pct"  data-device="lightify_ben" 
+                data-get-on="[0-9]{1,3}|on" 
+                data-get-off="off" 
+                class="cell"></div></div>
+</li>
+<li data-row="2" data-col="6" data-sizex="1" data-sizey="2">
+                <div class="center"><div data-type="dimmer" data-set="pct" data-get="pct"  data-device="lightify_julia" 
+                data-get-on="[0-9]{1,3}|on" 
+                data-get-off="off" 
+                class="cell"></div></div>
+</li>
+<li data-row="4" data-col="7" data-sizex="1" data-sizey="2">
+  <header>BADEZIMMER</header>
+<div type="label" class="cell">Temperatur</div>
+        <div type="label" device="LaCrosse_14" data-get="temperature" data-fix="0" data-unit=" °C" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Luftfeuchte</div>
+        <div type="label" device="LaCrosse_14" data-get="humidity" data-fix="0" data-unit="%" class="cell big"></div>
+        
+</li>
+
+
+<li data-row="2" data-col="7" data-sizex="1" data-sizey="2">
+<div type="label" class="cell">CO2 Belastung</div>
+        <div type="label" device="netatmo" data-get="co2" data-fix="0" data-unit=" mg" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Luftfeuchte</div>
+        <div type="label" device="Wohnzimmer.Wandthermostat" data-get="humidity" data-fix="0" data-unit="%" class="cell big"></div>
+        <div class="cell">&nbsp;</div>
+        <div type="label" class="cell">Lärm</div>
+        <div type="label" device="netatmo" data-get="noise" data-fix="0" data-unit=" dB" class="cell big"></div> 
+</li>
+
+
+<li data-row="5" data-col="2" data-sizex="1" data-sizey="1">
+       <header>FENSTER</header>
+       <div type="label" class="cell">&nbsp;</div>
+       <div type="contact" device="Fensterkontakt.Wohnzimmer" data-get="state" class="cell"></div>
+</li>
+<li data-row="5" data-col="4" data-sizex="1" data-sizey="1">
+       <header>FENSTER</header> 
+       <div type="label" class="cell">&nbsp;</div>
+       <div type="contact" device="Fensterkontakt.Schlafzimmer" data-get="state" class="cell"></div>
+</li>
+<li data-row="5" data-col="5" data-sizex="1" data-sizey="1">
+       <header>FENSTER</header> 
+       <div type="label" class="cell">&nbsp;</div>
+       <div type="contact" device="Fensterkontakt.Ben" data-get="state" class="cell"></div>
+</li>
+<li data-row="5" data-col="6" data-sizex="1" data-sizey="1">
+       <header>FENSTER</header> 
+       <div type="label" class="cell">&nbsp;</div>
+       <div type="contact" device="Fensterkontakt.Juliad" data-get="state" class="cell"></div>
+</li>
+<li data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+
+  <div class="cell"> 
+<div data-type="label" data-device="Wohnzimmer.Wandthermostat" data-get="measured-temp" data-unit="%B0C%0A"  class="cell big"></div>  
+        <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+   <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+       <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div>
+</div>
+    
+    <div type="label" device="Wohnzimmer.Wandthermostat" data-get="humidity" data-unit=" %" class="cell big"></div> 
+    <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Wohnzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div>
+</li>
+
+<li data-row="6" data-col="4" data-sizex="1" data-sizey="1">
+ 
+   <div class="cell">
+  <div data-type="label" data-device="Schlafzimmer.Wandthermostat" data-get="measured-temp" data-unit="%B0C%0A"  class="cell big"></div>  
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div></div>
+    <div type="label" device="Schlafzimmer.Wandthermostat" data-get="humidity" data-unit=" %" class="cell big"></div> 
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Schlafzimmer.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div>
+</li>
+<li data-row="6" data-col="5" data-sizex="1" data-sizey="1">
+     <div class="cell">
+  <div data-type="label" data-device="Ben.Wandthermostat" data-get="measured-temp" data-unit="%B0C%0A"  class="cell big"></div>
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div></div>
+    <div type="label" device="Ben.Wandthermostat" data-get="humidity" data-unit=" %" class="cell big"></div> 
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Ben.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div>
+</li>
+<li data-row="6" data-col="6" data-sizex="1" data-sizey="1">
+   <div class="cell">
+  <div data-type="label" data-device="Julia.Wandthermostat" data-get="measured-temp" data-unit="%B0C%0A"  class="cell big"></div>  
+    <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+       <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+       <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statMeasured-tempTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div></div>
+    <div type="label" device="Julia.Wandthermostat" data-get="humidity" data-unit=" %" class="cell big"></div> 
+    <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="1"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="2"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="Julia.Wandthermostat"
+    data-get="statHumidityTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    data-refperiod="3"
+    class="inline"></div>
+</li>
+</ul>
+</div> 
+</body>
+</html>

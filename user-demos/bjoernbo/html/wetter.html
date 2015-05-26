@@ -1,0 +1,791 @@
+<html>
+<title>FHEM</title>
+<head>
+<!-- 
+	 /* FHEM tablet ui */
+	 /*
+	 * Just another dashboard for FHEM
+	 *
+	 * Version: 1.3.0
+	 * Requires: jQuery v1.7+, font-awesome, jquery.gridster, jquery.toast
+	 * URL: https://github.com/knowthelist/fhem-tablet-ui
+	 *
+	 * Copyright (c) 2015 Mario Stephan <mstephan@shared-files.de>
+	 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+	 *
+	 * - create a new folder named 'tablet' in /<fhem-path>/www
+	 * - copy all files incl. sub folders into /<fhem-path>/www/tablet
+	 * - add 'define tablet_ui HTTPSRV tablet ./www/tablet Tablet Frontend' in fhem.cfg
+	 * - Tadaaa! A new fhem ui in http://<fhem-url>:8083/fhem/tablet/
+	 */
+	-->
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="widget_base_width" content="116">
+    <meta name="widget_base_height" content="131">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="longpoll" content="1"> <!-- 1=longpoll;0=shortpoll every 30sec -->
+    <meta name="debug" content="0"> <!-- 1=output to console;0=not output -->
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.gridster.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/css/fhem-tablet-ui.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/font-awesome.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/jquery.toast.min.css" />
+    <link rel="stylesheet" href="/fhem/tablet/lib/powerange.min.css" /> 
+    <link rel="stylesheet" href="/fhem/www/tablet/customfonts/font1/style.css">
+    <script type="text/javascript" src="/fhem/pgm2/jquery.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.gridster.min.js"></script>
+    <script type="text/javascript" src="/fhem/pgm2/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/fa-multi-button.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/powerange.min.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/widget_klimatrend.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/js/fhem-tablet-ui.js"></script>
+    <script type="text/javascript" src="/fhem/tablet/lib/jquery.circlemenu.js"></script>
+	
+	<!-- Enable this lines for usage with WebViewControl -->
+	<script type="text/javascript" src="/fhem/pgm2/cordova-2.3.0.js"></script>
+	<script type="text/javascript" src="/fhem/js/webviewcontrol.js"></script>
+	<script type="text/javascript">var wvcDevices = {'12345': 'Tablet'}; var wvcUserCssFile="webviewcontrol.css"</script>
+	<!-- End for WebViewControl -->
+</head>
+<body>
+<div class="gridster">
+<ul>
+
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="4">
+	<header>RÄUME</header>
+    <style>
+    #room_wetter #bg {
+        color: rgb(245,251,79) !important;
+        border: 3px 
+    }
+</style>
+    <div class="container">
+    <a id="room_index" href="index_V2.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-home" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_schlafzimmer" href="schlafzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bed" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_kueche" href="kueche.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-cutlery" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_wohnzimmer" href="wohnzimmer.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x font1-sofa" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_ben" href="ben.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-male" style="color: rgb(255,255,255);"></i>
+    </a>
+    <a id="room_julia" href="julia.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-female" style="color: rgb(255,255,255);"></i>
+    </a>
+    
+<div class="container">
+<div data-type="circlemenu" data-direction="right-bottom" class="cell circlemenu">
+    <ul>
+      <li><div data-type="push" data-icon="fa-umbrella" data-off-color="#33dd22" ></div></li>
+      
+      <li><a href="wetter.html">
+        <div data-type="push" 
+             data-icon="fa-cloud"></div></a></li>
+      
+      <li><a href="pollen.html">
+        <div data-type="push" 
+             data-icon="fa-pagelines"></div></a></li>
+      <li><a href="biowetter.html">
+        <div data-type="push" 
+             data-icon="fa-smile-o"></div></a></li>
+    </ul>    
+</div></div>
+</li>
+ <style>
+    div.weather td {
+        padding:2px !important;
+        text-align:left;
+        white-space:nowrap;
+    }
+    div.weather div[data-type=label] {
+        display:inline;
+        font-weight:bold;
+        white-space:normal;
+    }
+</style>
+</li>
+<li data-row="1" data-col="10" data-sizex="1" data-sizey="4">
+    <header>ÜBERSICHTEN</header>
+    <style>
+    #room_NO #bg {
+        color: rgb(249,252,156) !important;
+        border: 3px 
+    }
+</style>
+<div class="container">
+<a id="room_licht" href="licht.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-info" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kamera" href="kamera.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-video-camera" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_telefon" href="telefon.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-phone" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_batterie" href="batterie.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bolt" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_kalender" href="kalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-calendar" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_abfallkalender" href="abfallkalender.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-trash-o" style="color: rgb(255,255,255);"></i>
+</a> 
+<a id="room_statistik" href="statistik.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-bar-chart" style="color: rgb(255,255,255);"></i>
+</a>
+<a id="room_test" href="test.html" class="cell fa-stack fa-2x">
+    <i id="bg" class="fa fa-stack-2x fa-circle" style="color: rgb(111,69,120);"></i>
+    <i id="fg" class="fa fa-stack-1x fa-flask" style="color: rgb(255,255,255);"></i>
+</a>
+</div>
+
+<li data-row="1" data-col="2" data-sizex="3" data-sizey="4">
+        <div class="container weather">
+            <div class="container weather">
+            <header>
+                Wetter in 
+                <div data-type="label" 
+                            data-device="MeinWetter"
+                            data-get="city"
+                            style="display:inline"></div>
+            </header>
+<table border="0px" width="100%">       
+  <tr>
+    <td class="A2"><div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_date"></div></td>
+
+    <td class="B2"><center><div data-type="label" class="inline small"><big>&#8593;</big><small> Sonne:</small><br></div>
+     <div data-type="label" 
+             data-device="Sonnenaufgang"
+             data-get="state"></div></center></td>
+    <td class="C2"><center><div data-type="label" class="inline small"><big>&#8595;</big><small> Sonne:</small><br></div>
+    <div data-type="label" 
+             data-device="Sonnenuntergang"
+             data-get="state"></div></center></td>
+    <td class="D2"><center><div data-type="label" class="inline small"><small>Sichtweite:</small><br></div>
+                    <div data-type="symbol"
+                        data-icon="fa-binoculars" 
+                        data-on-color="#aa6900"
+                        data-off-color="#aa6900"
+                        class="inline"
+                        style="font-size:1em"></div>
+                        <div data-type="label" 
+                            data-device="MyWeather"
+                            data-get="visibility"
+                            data-unit=" km"
+                            class="inline"></center></td>
+   
+  </tr>
+  <tr>
+    <td class="tg-031e"><div data-type="label"><small>Temp<br></small></div>
+        <center><div data-type="label" 
+                            data-device="netatmo"
+                            data-get="temperature"
+                            data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+                            data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+                            data-unit="°C"
+                            class="inline cell big"></div></center>
+    <center><div data-type="klimatrend"
+    data-device="netatmo"
+    data-get="statTemperatureTendency"
+    data-refperiod="6"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="netatmo_"
+    data-get="statTemperatureTendency"
+    data-refperiod="3"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+   
+   class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="netatmo_"
+    data-get="statTemperatureTendency"
+    data-refperiod="2"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    class="inline"></div>
+    <div data-type="klimatrend"
+    data-device="netatmo_"
+    data-get="statTemperatureTendency"
+    data-refperiod="1"
+    data-stagnating-color="rgb(80,80,80)"
+    data-icon="fa-angle"
+    data-rising-color="rgb(180,80,80)"
+    data-falling-color="rgb(80,80,180)"
+    data-highmark="1"
+    data-highmark-icon="fa-angle-double"
+    data-highmark-rising-color="rgb(255,80,80)"
+    data-highmark-falling-color="rgb(80,80,255)"
+    class="inline"
+></div></center>
+
+</td>
+    <td class="tg-031e" colspan="2" rowspan="2">
+       <center> <div data-type="weather" 
+             data-device="MeinWetter"
+             data-get="condition"
+             style="font-size:250%">
+        </div>
+            
+        <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc1_condition">
+         </div>
+
+
+     </center>
+     </td>
+    <!-- <td class="tg-031e">C3</td>-->
+    <td><center><div data-type="wind_direction" 
+                            data-device="MyWeather"
+                            data-get="windDir"
+                            data-part="2"
+                            
+                            data-size="75"
+                            data-tickstep="45"></div>   
+    </center></td>
+</tr>
+ <tr>
+    <td class="tg-031e"><div data-type="label"><small>Feucht<br></small></div>
+        <center><div data-type="label" 
+             data-device="netatmo_"
+             data-get="humidity"
+             data-limits="[0,40,60]"
+             data-colors='["#9999ff","#aa6900","#ff6900"]'
+             data-unit=" %"
+             class="inline cell big">
+         </div>
+    <td class="tg-031e">
+        <center><div data-type="label"><small>Wind</small><br></div>
+    <div data-type="label" 
+             data-device="MyWeather"
+             data-get="wind"
+             data-unit=" km/h"
+             data-limits="[0,        19,       28,       38,       49,       74,       102,      117]"
+             data-colors='["#ffffff","#dddddd","#aa6900","#aa6900","#ff9999","#ff6666","#ff3333","#ff0000"]'
+             style="display:inline"
+             class="inline">
+         </div>
+   
+</center>
+    </td> 
+</tr>
+ <tr> 
+    <td class="C5"><center><div data-type="label" class="inline"><small>&nbsp;&nbsp;&nbsp;Tageswerte&nbsp;&nbsp;&nbsp;<br></small></div>
+            &#8595;
+            <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_tempMin"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+         </div>&#8593;
+         <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_tempMax"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+        </div></center>
+    </td>
+    <td class="A5"><center><div data-type="label" class="inline"><small>UV-Index<br></small></div>
+<div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_uv"
+             data-limits="[0,4,7]"
+             data-colors='["green","orange","red"]'
+              style="display:inline">
+         </div>
+</center>
+    </td>
+    <td class="B5"><center><div data-type="label" class="inline"><small>Regenrisiko<br></small></div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRainDay"
+              data-unit=" %"
+              data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#32AD4F","#3AAB2C","green","green","green","#F6AA1D","green","green","green","green","#F6451D"]'
+              style="display:inline">
+         </div></center></td>        
+    <td class="D5"><center><div data-type="label" class="inline"><small>Luftdruck<br></small></div>
+<div data-type="label" 
+                            data-device="MyWeather"
+                            data-get="pressure"
+                            data-unit=" hPa"
+                            data-limits="[0,950,1000]"
+                            data-colors='["#ff9999","#aa6900","#9999ff"]'></div>
+                         <div data-type="label" 
+                            data-device="MeinWetter"
+                            data-get="pressure_trend_sym"
+                            class="inline"></div></center>
+                    </td>
+</tr>
+<!-- Ergänzung -->
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td class="E1" colspan="4" rowspan="1">
+    <div data-type="label" class="inline"><center><small>Regenrisiko</small></center></div></td>
+    
+</tr>
+<tr><td><center><div data-type="symbol"
+                        data-icon="font1-droplet" 
+                        data-on-color="#0099FF"
+                        data-off-color="#0099FF"
+                        class="inline"
+                        style="font-size:3em"></div></center>
+</td>
+    <td class="F1"><!-- <center>0 Uhr<br>3 Uhr<br>6 Uhr<br>9 Uhr</center></td> -->
+     <small><div data-type="label" class="inline">0 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain00"
+              data-unit=" %"
+              data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">3 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain03"
+              data-unit=" %"
+            data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">6 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain06"
+              data-unit=" %"
+                    data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">9 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain09"
+              data-unit=" %"
+                    data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div></small>
+     </td>
+     <td>
+        <small><div data-type="label" class="inline">12 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain12"
+              data-unit=" %"
+                   data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+<div data-type="label" class="inline">15 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain15"
+              data-unit=" %"
+                  data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+
+<div data-type="label" class="inline">18 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain18"
+              data-unit=" %"
+              data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+         <div data-type="label" class="inline">21 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_chOfRain21"
+              data-unit=" %"
+                 data-limits="[0,          10,         20,    30,      40,     50,     60,     70,     80,     90,       100]"
+              data-colors='["#A3FD97","#3AAB2C","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#9ACD32","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div></small></td>
+    <td>&nbsp;</td>  
+
+</tr>
+<!--Ergänzung Temperaturverlauf -->
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td class="F1" colspan="4" rowspan="1">
+    <div data-type="label" class="inline"><center><small>Temperaturverlauf</small></center></div></td>
+    
+</tr>
+<tr><td><center><div data-type="symbol"
+                        data-icon="font1-stats-dots" 
+                        data-on-color="#FF9900"
+                        data-off-color="#FF9900"
+                        class="inline"
+                        style="font-size:3em"></div></center></td>
+    <td class="F1"><!-- <center>0 Uhr<br>3 Uhr<br>6 Uhr<br>9 Uhr</center></td> -->
+     <small><div data-type="label" class="inline">0 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp00"
+              data-unit="°C"
+     data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">3 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp03"
+              data-unit="°C"
+       data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">6 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp06"
+             data-unit="°C"
+            data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+        <div data-type="label" class="inline">9 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp09"
+             data-unit="°C"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div></small>
+     </td>
+     <td>
+        <small><div data-type="label" class="inline">12 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp12"
+           data-unit="°C"
+            data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+<div data-type="label" class="inline">15 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp15"
+              data-unit="°C"
+            data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+
+<div data-type="label" class="inline">18 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp18"
+              data-unit="°C"
+          data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div><br>
+         <div data-type="label" class="inline">21 Uhr</div>
+        <div data-type="label" 
+             data-device="MyWeather"
+             data-get="fc0_temp21"
+             data-unit="°C"
+         data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+              style="display:inline">
+         </div></small></td>
+    <td>&nbsp;</td>  
+</tr>    
+</table>
+</li>
+</li>
+<li data-row="1" data-col="6" data-sizex="4" data-sizey="4">
+        <div class="container">
+            <header>Regenradar</header>
+            <br><img src="http://www.wetteronline.de/?pid=p_radar_map&ireq=true&src=radar/vermarktung/p_radar_map_forecast/forecastLoop/DL/latestForecastLoop.gif" width="450" height="500">
+        </img src>     
+     </div>
+</li>
+<li data-row="5" data-col="2" data-sizex="1" data-sizey="1">
+       <header>
+                Wetter für 
+                <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc2_day_of_week"
+              style="display:inline">
+         </div>
+                         
+            </header>
+<center>
+        <div data-type="weather" 
+             data-device="MeinWetter"
+             data-get="fc2_condition"
+             style="font-size:250%">
+         </div>
+        <br>
+        <div data-type="label" 
+             data-device="WEATHER"
+             data-get="fc2_condition"
+             class="inline">
+       
+         </div><big>&#8595;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc2_low_c"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+            data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+         </div><big>&#8593;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc2_high_c"
+         data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+         data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+        </div>
+  </center>  
+        </li>
+<li data-row="5" data-col="3" data-sizex="1" data-sizey="1">
+       <header>
+                Wetter für 
+                <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc3_day_of_week"
+              style="display:inline">
+         </div>
+                         
+            </header>
+<center>
+        <div data-type="weather" 
+             data-device="MeinWetter"
+             data-get="fc3_condition"
+             style="font-size:250%">
+         </div>
+        <br>
+        <div data-type="label" 
+             data-device="WEATHER"
+             data-get="fc3_condition"
+             class="inline">
+       
+         </div><big>&#8595;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc3_low_c"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+         </div><big>&#8593;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc3_high_c"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+        </div>
+  </center>         
+        </li>
+<li data-row="5" data-col="4" data-sizex="1" data-sizey="1">
+       <header>
+                Wetter für 
+                <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc4_day_of_week"
+              style="display:inline">
+         </div>            
+            </header>
+<center>
+        <div data-type="weather" 
+             data-device="MeinWetter"
+             data-get="fc4_condition"
+             style="font-size:250%">
+         </div>
+        <br>
+        <div data-type="label" 
+             data-device="WEATHER"
+             data-get="fc4_condition"
+             class="inline">
+         </div><big>&#8595;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc4_low_c"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+         </div><big>&#8593;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc4_high_c"
+             data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+             data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+        </div>
+  </center>
+        </li>
+<li data-row="5" data-col="5" data-sizex="1" data-sizey="1">
+       <header>
+                Wetter für 
+                <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc5_day_of_week"
+              style="display:inline">
+         </div>                        
+            </header>
+<center>
+        <div data-type="weather" 
+             data-device="MeinWetter"
+             data-get="fc5_condition"
+             style="font-size:250%">
+         </div>
+        <br>
+        <div data-type="label" 
+             data-device="WEATHER"
+             data-get="fc5_condition"
+             class="inline">
+         </div><big>&#8595;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc5_low_c"
+        data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+        data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+         </div><big>&#8593;</big>
+         <div data-type="label" 
+             data-device="MeinWetter"
+             data-get="fc5_high_c"
+        data-limits="[-20,-15,-10,-5,0,5,10,15,20,25,30,35]"
+          data-colors='["#483D8B","#1874CD","#9AC0CD","#CAE1FF","#F5FFFA","#98FB98","#9ACD32","#FFA500","#FF4500","#FF3030","#EE2C2C","#8B1A1A"]'
+             data-unit=" °C"
+             class="inline">
+        </div>
+  </center>      
+        </li>
+
+<li data-row="5" data-col="6" data-sizex="1" data-sizey="1">
+       <header>Birke</header>
+       <div data-type="symbol" data-device="Pollenflug" 
+                        data-get="Birke" 
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+   </li>
+<li data-row="5" data-col="7" data-sizex="1" data-sizey="1">
+       <header>Gräser</header>
+       <div data-type="symbol" data-device="Pollenflug" 
+                        data-get="Graeser" 
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+   </li>
+<li data-row="5" data-col="8" data-sizex="1" data-sizey="1">
+       <header>Pappel</header>
+       <div data-type="symbol" data-device="Pollenflug" 
+                        data-get="Pappel" 
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+   </li>
+<li data-row="5" data-col="9" data-sizex="1" data-sizey="1">
+       <header>Weizen</header>
+       <div data-type="symbol" data-device="Pollenflug" 
+                        data-get="Weizen" 
+                        data-icons='["fa-pagelines","fa-pagelines","fa-pagelines"]' 
+                        data-get-on='["1","2","3"]' 
+                        data-on-colors='["yellowgreen","yellow","red"]' 
+                        style="font-size:4em"
+                        class="inline"></div>
+   </li>
+
+<li data-row="1" data-col="4" data-sizex="1" data-sizey="3">
+       <header>INNEN</header>
+            <div data-type="label"><br><small>Feucht:<br></small></div>
+<div type="label" device="Wohnzimmer.Wandthermostat" data-get="humidity" data-fix="0" data-unit="%" class="cell big"></div>
+<div data-type="label"><br><small>Lärm:<br></small></div>
+<div type="label" device="netatmo_" data-get="noise" data-fix="0" data-unit=" dB" class="cell big"></div> 
+<div data-type="label"><br><small>Temp:<br></small></div>
+<div data-type="label" data-device="Wohnzimmer.Wandthermostat" data-get="measured-temp" data-unit=" °C"  class="cell big"></div>
+<div data-type="label"><br><small>CO2-Gehalt:<br></small></div>
+<div type="label" device="netatmo" data-get="co2" data-fix="0" data-unit=" mg" class="cell big"
+         data-limits="[0,        200,            400,        600,    800,     1000]"
+         data-colors='["green","yellowgreen","greenyellow","yellow","orange","red"]'
+             ></div> </br>
+             <div><a id="room_statistik" href="05wetter_statistik.html" class="cell fa-stack fa-2x">
+
+    <i id="fg" class="fa fa-stack-1x fa-bar-chart" style="color: rgb(255,255,255);"></i>
+</a>   
+        </li>
+
+
+<li data-row="4" data-col="4" data-sizex="1" data-sizey="1">
+        <header>Mond</header>
+       <img src="http://www.astronomie.de/Images/Himmelaktuell/obsmoon.gif" width="105" alt="Mond"></a>    
+   </li>
+</ul>
+</div> 
+</body>
+</html>
